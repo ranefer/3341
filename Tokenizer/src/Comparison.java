@@ -2,24 +2,36 @@ import java.util.ArrayList;
 
 public class Comparison {
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
-		assert (isComparison(tokens.current()));
-		parseOpenParen(tokens, t);
-
-		parseCompareOperator(tokens, t);
-
-		parseClosedParen(tokens, t);
-	}
-
 	public static boolean isComparison(String token) {
 		return token.equals("(");
 	}
 
+	public static void parse(Token tokens, ArrayList<Integer> t) {
+		assert (isComparison(tokens.current()));
+
+		parseOpenParen(tokens, t);
+		
+		assert(tokens.hasCurrent() && Op.isOp(tokens.current())) : "Expected Op";
+		Op.parse(tokens, t);
+
+		parseCompareOperator(tokens, t);
+		
+		assert(tokens.hasCurrent() && Op.isOp(tokens.current())) : "Expected Op";
+		Op.parse(tokens, t);
+
+		parseClosedParen(tokens, t);
+	}
+
 	private static void parseOpenParen(Token tokens, ArrayList<Integer> t) {
-		String openParen = "";
-		if (tokens.hasNext())
-			openParen = tokens.current();
-		assert (openParen.equals("(")) : "Expected '(' but was " + openParen;
+		assert (tokens.current().equals("(")) : "Expected '('";
+		t.add(20); // (
+
+		tokens.skip();
+	}
+
+	private static void parseClosedParen(Token tokens, ArrayList<Integer> t) {
+		assert (tokens.current().equals(")")) : "Expected ')'";
+		t.add(21); // )
 
 		tokens.skip();
 	}
@@ -56,13 +68,5 @@ public class Comparison {
 		tokens.skip();
 	}
 
-	private static void parseClosedParen(Token tokens, ArrayList<Integer> t) {
-		String closedParen = "";
-		if (tokens.hasNext())
-			closedParen = tokens.current();
-		assert (closedParen.equals("(")) : "Expected '(' but was "
-				+ closedParen;
 
-		tokens.skip();
-	}
 }
