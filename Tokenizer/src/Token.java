@@ -14,12 +14,8 @@ public class Token {
 	}
 	
 	public String next() throws IndexOutOfBoundsException {
-		currentToken++;
-		if(!this.hasNext()) {
-			throw new IndexOutOfBoundsException();
-		} else  {
-            return tokens[currentToken];
-		}
+		assert(hasNext());
+		return tokens[++currentToken];
 	}
 	
 
@@ -28,15 +24,13 @@ public class Token {
 	}
 	
 	public String current() throws IndexOutOfBoundsException {
-		if(!this.hasNext()) {
-			throw new IndexOutOfBoundsException();
-		} else  {
-			System.out.println(tokens[currentToken]);
-            return tokens[currentToken];
-		}
+		return tokens[currentToken];
+	}
+	public boolean hasCurrent() {
+		return tokens.length > currentToken;
 	}
 	
-	public Boolean hasNext() {
-		return tokens.length > currentToken;
+	public boolean hasNext() {
+		return tokens.length > currentToken + 1;
 	}
 }

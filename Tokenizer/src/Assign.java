@@ -11,4 +11,16 @@ public class Assign {
 		// TODO
 		return false;
 	}
+
+	private static void parseColon(Token tokens, ArrayList<Integer> t) {
+
+		String semiColon = "";
+		if (tokens.hasNext())
+			semiColon = tokens.current();
+		assert (semiColon.equals(";")) : "Expected: ';' but was " + semiColon;
+
+		t.add(12); // ;
+
+		tokens.skip();
+	}
 }
