@@ -20,8 +20,8 @@ public final String[] RESERVED = {"program", "begin", "end", "if", "int", "if", 
 		assert(tokens.hasCurrent()) : "Exptectd 'begin'";
         parseBegin(tokens, t);
 		
-		assert(tokens.hasCurrent() && StatementSequence.isStatementSequence(tokens.current())) : "Expected Statement Sequence";
-        StatementSequence.parse(tokens, t);
+		assert(tokens.hasCurrent() && Statement.isStatement(tokens.current())) : "Expected Statement Sequence";
+        Statement.parse(tokens, t);
 		
         assert(tokens.hasCurrent()) : "Exptected 'end'";
 		parseEnd(tokens, t);
