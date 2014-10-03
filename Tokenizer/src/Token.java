@@ -6,7 +6,7 @@ public class Token {
 
 	
 	String[] tokens;
-	int currentToken;
+	private int currentToken;
 	
 	public Token(String[] tokens) {
 		currentToken = 0;
