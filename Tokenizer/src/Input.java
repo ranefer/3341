@@ -3,12 +3,18 @@ import java.util.ArrayList;
 public class Input {
 
 	public static boolean isInput(String token) {
-		//TODO
-		return false;
+		return token.equals("read");
 	}
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
-
+		assert(isInput(tokens.current()));
+		tokens.skip();
+		
+		assert(tokens.hasCurrent() && Id.isId(tokens.current())) : "Expected id";
+		Id.parse(tokens, t);
+		
+		assert(tokens.hasCurrent() && Colon.isColon(tokens.current())) : "Expected ';'";
+		Colon.parse(tokens, t);
 	}
 
 }
