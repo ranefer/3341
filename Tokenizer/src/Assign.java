@@ -2,25 +2,27 @@ import java.util.ArrayList;
 
 public class Assign {
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
-		assert (isAssign(tokens.current()));
-
-	}
 
 	public static boolean isAssign(String token) {
-		// TODO
-		return false;
+		return Id.isId(token); // assign { id = expression }
 	}
-
-	private static void parseColon(Token tokens, ArrayList<Integer> t) {
-
-		String semiColon = "";
-		if (tokens.hasNext())
-			semiColon = tokens.current();
-		assert (semiColon.equals(";")) : "Expected: ';' but was " + semiColon;
-
-		t.add(12); // ;
-
+	public static void parse(Token tokens, ArrayList<Integer> t) {
+		assert (isAssign(tokens.current()));
+		Id.parse(tokens, t);
+		
+		assert(tokens.hasCurrent()) : "Expected '='";
+        parseEqualSign(tokens, t);
+		
+		assert(tokens.hasCurrent() && Expression.isExpression(tokens.current())) : "Expected expression";
+		Expression.parse(tokens, t);
+		
+		assert(tokens.hasCurrent() && Colon.isColon(tokens.current())) : "Expected ';'";
+		Colon.parse(tokens, t);
+	}
+	
+	public static void parseEqualSign(Token tokens, ArrayList<Integer> t) {
+		assert(tokens.current().equals("=")) : "Expected '=' but was " + tokens.current();
+		t.add(13);
 		tokens.skip();
 	}
 }
