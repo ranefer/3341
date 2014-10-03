@@ -1,21 +1,28 @@
 import java.util.ArrayList;
 
 public class If {
+	
+	public static boolean isIf(String token) {
+		return token.equals("if");
+	}
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
 		assert (isIf(tokens.current()));
 		tokens.skip();
 
-		assert (Condition.isCondition(tokens.current())) : "Expected a condition statement";
+		assert (tokens.hasCurrent() && Condition.isCondition(tokens.current())) : "Expected a condition";
 		Condition.parse(tokens, t);
 
-		parseThen(tokens, t);
+		assert(tokens.hasCurrent() && tokens.current().equals("then")): "Expected 'then'";
+		tokens.skip();
 
-		if (StatementSequence.isStatementSequence(tokens.current()))
-			StatementSequence.parse(tokens, t);
+		assert(tokens.hasCurrent() && Statement.isStatement(tokens.current())) : "Expected a statement";
+		Statement.parse(tokens, t);
 
 		parseElse(tokens, t);
-
+		
+		assert(tokens.hasCurrent() && tokens.current().equals("end")) : "Expected 'end'";
+		tokens.skip();
 	}
 
 	public static void parseCondition(Token tokens, ArrayList<Integer> t) {
@@ -31,35 +38,13 @@ public class If {
 		tokens.skip();
 	}
 
-	private static void parseThen(Token tokens, ArrayList<Integer> t) {
-		String then = "";
-		if (tokens.hasNext())
-			then = tokens.current();
-		assert (then.equals("then")) : "Expected 'then' but was " + then;
-
-		tokens.skip();
-	}
-
 	private static void parseElse(Token tokens, ArrayList<Integer> t) {
 		if (tokens.hasNext()) {
 			if (tokens.current().equals("else")) {
 				tokens.next();
-				if (StatementSequence.isStatementSequence(tokens.current()))
+				if (Statement.isStatement(tokens.current()))
 					Statement.parse(tokens, t);
 			}
 		}
-	}
-
-	private static void parseEnd(Token tokens, ArrayList<Integer> t) {
-		String end = "";
-		if (tokens.hasNext())
-			end = tokens.current();
-		assert (end.equals("end")) : "Expected 'end' but was " + end;
-
-		tokens.skip();
-	}
-
-	public static boolean isIf(String token) {
-		return token.equals("if");
 	}
 }
