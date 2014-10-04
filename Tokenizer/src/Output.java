@@ -8,6 +8,7 @@ public class Output {
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
 		assert(isOutput(tokens.current()));
+		t.add(11);
 		tokens.skip();
 		
 		assert(tokens.hasCurrent() && Id.isId(tokens.current())) : "Expected id";

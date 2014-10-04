@@ -8,7 +8,7 @@ public class Id {
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
 		assert(isId(tokens.current()));
-		t.add(18); // id
+		t.add(32); // id
 		tokens.skip();
 		
 		if(tokens.hasCurrent() && Comma.isComma(tokens.current())) {
