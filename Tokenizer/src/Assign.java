@@ -22,7 +22,7 @@ public class Assign {
 	
 	public static void parseEqualSign(Token tokens, ArrayList<Integer> t) {
 		assert(tokens.current().equals("=")) : "Expected '=' but was " + tokens.current();
-		t.add(13);
+		t.add(14);
 		tokens.skip();
 	}
 }

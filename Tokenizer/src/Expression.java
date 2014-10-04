@@ -19,7 +19,6 @@ public class Expression {
 			t.add(23);
             assert(tokens.hasNext() && Expression.isExpression(tokens.current()));
             Expression.parse(tokens, t);
-		} else 
-			assert(false) : "Expected +/-";
+		} 
 	}
 }

@@ -14,6 +14,10 @@ public class Tokenizer {
 			args[i]= args[i].replaceAll("[\\)]", " ) ");
 			args[i]= args[i].replaceAll("[\\[]", " [ ");
 			args[i]= args[i].replaceAll("[\\]]", " ] ");
+
+			if(args[i].matches("[A-Z]+[0-9]*[\\s]*[=][\\s]*[0-9]+[\\s]*[;][\\s]*"))
+                args[i]= args[i].replaceAll("[=]", " = ");
+			args[i]= args[i].replaceAll("[\\]]", " ] ");
 		}
 		for(int i = 0; i < args.length; i++) {
 			String[] temp1 = args[i].split(" ");

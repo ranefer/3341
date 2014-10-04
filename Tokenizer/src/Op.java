@@ -19,6 +19,7 @@ public class Op {
 	
 		if(alternative.matches("[0-9]+"))  {
 			t.add(31); // integer
+			tokens.skip();
 		} else if(Id.isId(alternative)) {
 			Id.parse(tokens, t);
 		} else if(alternative.equals("(")) {
@@ -26,6 +27,7 @@ public class Op {
 			Expression.parse(tokens, t);
 			assert(tokens.current().equals(")")) : "Expected ')'";
 			t.add(21); // )
+			tokens.skip();
 		} else 
 			assert(false) : "Expected Op";
 	}

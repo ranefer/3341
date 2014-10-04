@@ -4,14 +4,13 @@ public class Statement {
 
 	public static boolean isStatement(String token) {
 		boolean result = false;
-		for (String s : RESERVED) {
-			result = result || token.equals(s);
-		}
+		result = result || Assign.isAssign(token);
+		result = result || If.isIf(token);
+		result = result || Loop.isLoop(token);
+		result = result || Input.isInput(token);
+		result = result || Output.isOutput(token);
 		return result;
 	}
-
-	private static final String[] RESERVED = { "if", "while", "loop", "assign",
-			"read", "write" };
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
 		assert (isStatement(tokens.current()));
