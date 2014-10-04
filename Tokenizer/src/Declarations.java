@@ -8,14 +8,16 @@ public class Declarations {
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
 		assert (isDeclaration(tokens.current()));
+		t.add(4);
+		tokens.skip();
 
-		assert(tokens.hasNext() && Id.isId(tokens.next())) : "Expected id";
+		assert(tokens.hasCurrent() && Id.isId(tokens.current())) : "Expected id";
 		Id.parse(tokens, t);
 		
 		assert(tokens.hasCurrent() && Colon.isColon(tokens.current())) : "Expected ';'";
 		Colon.parse(tokens, t);
 
-		if (isDeclaration(tokens.next()))
+		if (isDeclaration(tokens.current()))
 			Declarations.parse(tokens, t);
 	}
 }

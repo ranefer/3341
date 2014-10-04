@@ -1,21 +1,22 @@
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class Token {
 
 	
-	String[] tokens;
+	ArrayList<String> tokens;
 	private int currentToken;
 	
-	public Token(String[] tokens) {
+	public Token(ArrayList<String> tokens) {
 		currentToken = 0;
 		this.tokens = tokens;
 	}
 	
 	public String next() throws IndexOutOfBoundsException {
 		assert(hasNext());
-		return tokens[++currentToken];
+		return tokens.get(++currentToken);
 	}
 	
 
@@ -24,13 +25,13 @@ public class Token {
 	}
 	
 	public String current() throws IndexOutOfBoundsException {
-		return tokens[currentToken];
+		return tokens.get(currentToken);
 	}
 	public boolean hasCurrent() {
-		return tokens.length > currentToken;
+		return tokens.size() > currentToken;
 	}
 	
 	public boolean hasNext() {
-		return tokens.length > currentToken + 1;
+		return tokens.size() > currentToken + 1;
 	}
 }

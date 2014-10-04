@@ -12,6 +12,7 @@ public final String[] RESERVED = {"program", "begin", "end", "if", "int", "if", 
 	
 	public static void parse(Token tokens, ArrayList<Integer> t) {
 		assert(isProgram(tokens.current())): "Expected: program but was '" + tokens.current() + "'";;
+		tokens.skip();
 		t.add(1); // program
 		
         assert(tokens.hasNext() && Declarations.isDeclaration(tokens.current())) : "Expected delcaration";
