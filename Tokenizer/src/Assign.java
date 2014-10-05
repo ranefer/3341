@@ -6,21 +6,21 @@ public class Assign {
 		return Id.isId(token); // assign { id = expression }
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
+	public static void parse(Token tokens) {
 		Reporter.Assert(isAssign(tokens.current()), "Expected Id");
-		Id.parse(tokens, t);
+		Id.parse(tokens);
 
-		parseEqualSign(tokens, t);
+		parseEqualSign(tokens);
 
-		Expression.parse(tokens, t);
+		Expression.parse(tokens);
 
-		Colon.parse(tokens, t);
+		Colon.parse(tokens);
 	}
 
-	public static void parseEqualSign(Token tokens, ArrayList<Integer> t) {
+	public static void parseEqualSign(Token tokens) {
 		Reporter.Assert(tokens.current().equals("="), "Expected '=' but was "
 				+ tokens.current());
-		t.add(14);
+		Tokenizer.result.add(14);
 		tokens.skip();
 	}
 }

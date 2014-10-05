@@ -6,9 +6,9 @@ public class Comma {
 		return token.equals(",");
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
+	public static void parse(Token tokens) {
 		Reporter.Assert(isComma(tokens.current()), "Expected ';'");
-		t.add(13);
+		Tokenizer.result.add(13);
 		tokens.skip();
 	}
 }

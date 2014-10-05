@@ -10,51 +10,51 @@ public class Condition {
 		return result;
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
+	public static void parse(Token tokens) {
 		Reporter.Assert(isCondition(tokens.current()), "Expected Condition");
 
 		String alternative = tokens.current();
 
 		if (Comparison.isComparison(alternative)) {
-			Comparison.parse(tokens, t);
+			Comparison.parse(tokens);
 		} else if (alternative.equals("!")) {
-			parseExclamationPoint(tokens, t);
-			Condition.parse(tokens, t);
+			parseExclamationPoint(tokens);
+			Condition.parse(tokens);
 		} else if (alternative.equals("[")) {
-			parseOpenBracket(tokens, t);
-			Condition.parse(tokens, t);
-			parseSymbol(tokens, t);
-			Condition.parse(tokens, t);
-			parseClosedBracket(tokens, t);
+			parseOpenBracket(tokens);
+			Condition.parse(tokens);
+			parseSymbol(tokens);
+			Condition.parse(tokens);
+			parseClosedBracket(tokens);
 		}
 	}
 
-	public static void parseExclamationPoint(Token tokens, ArrayList<Integer> t) {
+	public static void parseExclamationPoint(Token tokens) {
 		Reporter.Assert(tokens.current().equals("!"), "Expected '!'");
-		t.add(15); // !
+		Tokenizer.result.add(15); // !
 
 		tokens.skip();
 	}
 
-	public static void parseOpenBracket(Token tokens, ArrayList<Integer> t) {
+	public static void parseOpenBracket(Token tokens) {
 		Reporter.Assert(tokens.current().equals("["), "Expected '['");
-		t.add(16);
+		Tokenizer.result.add(16);
 
 		tokens.skip();
 	}
 
-	public static void parseClosedBracket(Token tokens, ArrayList<Integer> t) {
+	public static void parseClosedBracket(Token tokens) {
 		Reporter.Assert(tokens.current().equals("]"), "Expected ']'");
-		t.add(17);
+		Tokenizer.result.add(17);
 
 		tokens.skip();
 	}
 
-	public static void parseSymbol(Token tokens, ArrayList<Integer> t) {
+	public static void parseSymbol(Token tokens) {
 		if (tokens.current().equals("&&"))
-			t.add(18); // &&
+			Tokenizer.result.add(18); // &&
 		else if (tokens.current().equals("||"))// 18
-			t.add(19); // ||
+			Tokenizer.result.add(19); // ||
 		else
 			Reporter.Assert(false, "Expected '&&' or '||'");
 

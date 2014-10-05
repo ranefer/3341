@@ -6,18 +6,20 @@ public class Loop {
 		return token.equals("while");
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
+	public static void parse(Token tokens) {
 		Reporter.Assert(isLoop(tokens.current()), "Expected Loop");
 		tokens.skip();
 
-		Condition.parse(tokens, t);
+		Condition.parse(tokens);
 
 		Reporter.Assert(tokens.current().equals("loop"), "Expected 'loop',");
 		tokens.skip();
 
-		Statement.parse(tokens, t);
+		Statement.parse(tokens);
 
 		Reporter.Assert(tokens.current().equals("end"), "Expected 'end',");
 		tokens.skip();
+		
+		Colon.parse(tokens);
 	}
 }

@@ -12,21 +12,21 @@ public class Op {
 		return result;
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
+	public static void parse(Token tokens) {
 		Reporter.Assert(isOp(tokens.current()), "Expected Op");
 
 		String alternative = tokens.current();
 
 		if (alternative.matches("[0-9]+")) {
-			t.add(31); // integer
+			Tokenizer.result.add(31); // integer
 			tokens.skip();
 		} else if (Id.isId(alternative)) {
-			Id.parse(tokens, t);
+			Id.parse(tokens);
 		} else if (alternative.equals("(")) {
-			t.add(20); // (
-			Expression.parse(tokens, t);
+			Tokenizer.result.add(20); // (
+			Expression.parse(tokens);
 			assert (tokens.current().equals(")")) : "Expected ')'";
-			t.add(21); // )
+			Tokenizer.result.add(21); // )
 			tokens.skip();
 		} else
 			assert (false) : "Expected Op";

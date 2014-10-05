@@ -6,12 +6,12 @@ public class Output {
 		return token.equals("write");
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
+	public static void parse(Token tokens) {
 		Reporter.Assert(isOutput(tokens.current()), "Expected Output");
-		t.add(11);
+		Tokenizer.result.add(11);
 		tokens.skip();
 
-		Id.parse(tokens, t);
-		Colon.parse(tokens, t);
+		Id.parse(tokens);
+		Colon.parse(tokens);
 	}
 }

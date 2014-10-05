@@ -9,35 +9,35 @@ public class Program {
 		return token.equals("program");
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
+	public static void parse(Token tokens) {
 		Reporter.Assert(isProgram(tokens.current()),
 				"Expected: program but was '" + tokens.current() + "'");
 		tokens.skip();
-		t.add(1); // program
+		Tokenizer.result.add(1); // program
 
-		Declarations.parse(tokens, t);
+		Declarations.parse(tokens);
 
-		parseBegin(tokens, t);
+		parseBegin(tokens);
 
-		Statement.parse(tokens, t);
+		Statement.parse(tokens);
 
-		parseEnd(tokens, t);
+		parseEnd(tokens);
 
 		Reporter.Assert(!tokens.hasNext(), "Expected end of file");
-		t.add(33); // EOF
+		Tokenizer.result.add(33); // EOF
 	}
 
-	private static void parseBegin(Token tokens, ArrayList<Integer> t) {
+	private static void parseBegin(Token tokens) {
 		Reporter.Assert(tokens.current().equals("begin"),
 				"Expected: begin but was '" + tokens.current() + "'");
-		t.add(2); // begin
+		Tokenizer.result.add(2); // begin
 		tokens.skip();
 	}
 
-	private static void parseEnd(Token tokens, ArrayList<Integer> t) {
+	private static void parseEnd(Token tokens) {
 		Reporter.Assert(tokens.current().equals("end"),
 				"Expected: end but was '" + tokens.current() + "'");
-		t.add(3); // end
+		Tokenizer.result.add(3); // end
 		tokens.skip();
 	}
 }

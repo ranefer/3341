@@ -6,29 +6,31 @@ public class If {
 		return token.equals("if");
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
+	public static void parse(Token tokens) {
 		Reporter.Assert(isIf(tokens.current()), "Expected If");
 		tokens.skip();
 
-		Condition.parse(tokens, t);
+		Condition.parse(tokens);
 
 		Reporter.Assert(tokens.current().equals("then"), "Expected 'then',");
 		tokens.skip();
 
-		Statement.parse(tokens, t);
+		Statement.parse(tokens);
 
-		parseElse(tokens, t);
+		parseElse(tokens);
 
 		Reporter.Assert(tokens.current().equals("end"), "Expected 'end'");
 		tokens.skip();
+		
+		Colon.parse(tokens);
 	}
 
-	public static void parseCondition(Token tokens, ArrayList<Integer> t) {
+	public static void parseCondition(Token tokens) {
 		String openParen = tokens.current();
 		Reporter.Assert(openParen.equals("("), "Expected: '(' but was "
 				+ openParen);
 
-		Condition.parse(tokens, t);
+		Condition.parse(tokens);
 
 		String closedParen = tokens.current();
 		Reporter.Assert(closedParen.equals(")"), "Expected: ')' but was,"
@@ -37,12 +39,12 @@ public class If {
 		tokens.skip();
 	}
 
-	private static void parseElse(Token tokens, ArrayList<Integer> t) {
+	private static void parseElse(Token tokens) {
 		if (tokens.hasNext()) {
 			if (tokens.current().equals("else")) {
 				tokens.next();
 				if (Statement.isStatement(tokens.current()))
-					Statement.parse(tokens, t);
+					Statement.parse(tokens);
 			}
 		}
 	}

@@ -6,54 +6,54 @@ public class Comparison {
 		return token.equals("(");
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
+	public static void parse(Token tokens) {
 		Reporter.Assert(isComparison(tokens.current()), "Expected Comparison");
 
-		parseOpenParen(tokens, t);
+		parseOpenParen(tokens);
 
-		Op.parse(tokens, t);
+		Op.parse(tokens);
 
-		parseCompareOperator(tokens, t);
+		parseCompareOperator(tokens);
 
-		Op.parse(tokens, t);
+		Op.parse(tokens);
 
-		parseClosedParen(tokens, t);
+		parseClosedParen(tokens);
 	}
 
-	private static void parseOpenParen(Token tokens, ArrayList<Integer> t) {
+	private static void parseOpenParen(Token tokens) {
 		Reporter.Assert(tokens.current().equals("("), "Expected '(',");
-		t.add(20); // (
+		Tokenizer.result.add(20); // (
 
 		tokens.skip();
 	}
 
-	private static void parseClosedParen(Token tokens, ArrayList<Integer> t) {
+	private static void parseClosedParen(Token tokens) {
 		Reporter.Assert(tokens.current().equals(")"), "Expected ')',");
-		t.add(21); // )
+		Tokenizer.result.add(21); // )
 
 		tokens.skip();
 	}
 
-	private static void parseCompareOperator(Token tokens, ArrayList<Integer> t) {
+	private static void parseCompareOperator(Token tokens) {
 		if (tokens.hasNext()) {
 			switch (tokens.current()) {
 			case "!=":
-				t.add(25);
+				Tokenizer.result.add(25);
 				break;
 			case "==":
-				t.add(26);
+				Tokenizer.result.add(26);
 				break;
 			case "<":
-				t.add(27);
+				Tokenizer.result.add(27);
 				break;
 			case ">":
-				t.add(28);
+				Tokenizer.result.add(28);
 				break;
 			case "<=":
-				t.add(29);
+				Tokenizer.result.add(29);
 				break;
 			case ">=":
-				t.add(30);
+				Tokenizer.result.add(30);
 				break;
 			default:
 				Reporter.Assert(false, "Exptected a comparision but was "

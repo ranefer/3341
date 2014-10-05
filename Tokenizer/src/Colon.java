@@ -6,9 +6,9 @@ public class Colon {
 		return token.equals(";");
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
+	public static void parse(Token tokens) {
 		Reporter.Assert(isColon(tokens.current()), "Expected ';'");
-		t.add(12);
+		Tokenizer.result.add(12);
 		tokens.skip();
 	}
 }

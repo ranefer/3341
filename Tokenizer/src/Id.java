@@ -6,14 +6,14 @@ public class Id {
 		return token.matches("[A-Z]+[0-9]*");
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
+	public static void parse(Token tokens) {
 		Reporter.Assert(isId(tokens.current()), "Expected Id");
-		t.add(32); // id
+		Tokenizer.result.add(32); // id
 		tokens.skip();
 
 		if (tokens.hasCurrent() && Comma.isComma(tokens.current())) {
-			Comma.parse(tokens, t);
-			Id.parse(tokens, t);
+			Comma.parse(tokens);
+			Id.parse(tokens);
 		}
 	}
 }
