@@ -7,7 +7,7 @@ public class Expression {
 	}
 
 	public static void parse(Token tokens) {
-		Reporter.Assert(isExpression(tokens.current()), "Expected Expression");
+		Reporter.Assert(isExpression(tokens.current()), "Expected Expression but was " + tokens.current());
 
 		Factor.parse(tokens);
 

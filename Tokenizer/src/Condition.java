@@ -11,7 +11,7 @@ public class Condition {
 	}
 
 	public static void parse(Token tokens) {
-		Reporter.Assert(isCondition(tokens.current()), "Expected Condition");
+		Reporter.Assert(isCondition(tokens.current()), "Expected Condition but was " + tokens.current());
 
 		String alternative = tokens.current();
 
@@ -30,21 +30,21 @@ public class Condition {
 	}
 
 	public static void parseExclamationPoint(Token tokens) {
-		Reporter.Assert(tokens.current().equals("!"), "Expected '!'");
+		Reporter.Assert(tokens.current().equals("!"), "Expected '!' but was " + tokens.current());
 		Tokenizer.result.add(15); // !
 
 		tokens.skip();
 	}
 
 	public static void parseOpenBracket(Token tokens) {
-		Reporter.Assert(tokens.current().equals("["), "Expected '['");
+		Reporter.Assert(tokens.current().equals("["), "Expected '[' but was " + tokens.current());
 		Tokenizer.result.add(16);
 
 		tokens.skip();
 	}
 
 	public static void parseClosedBracket(Token tokens) {
-		Reporter.Assert(tokens.current().equals("]"), "Expected ']'");
+		Reporter.Assert(tokens.current().equals("]"), "Expected ']' but was " + tokens.current());
 		Tokenizer.result.add(17);
 
 		tokens.skip();
@@ -56,7 +56,7 @@ public class Condition {
 		else if (tokens.current().equals("||"))// 18
 			Tokenizer.result.add(19); // ||
 		else
-			Reporter.Assert(false, "Expected '&&' or '||'");
+			Reporter.Assert(false, "Expected '&&' or '||' but was " + tokens.current());
 
 		tokens.skip();
 	}

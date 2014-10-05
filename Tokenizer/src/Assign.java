@@ -7,7 +7,7 @@ public class Assign {
 	}
 
 	public static void parse(Token tokens) {
-		Reporter.Assert(isAssign(tokens.current()), "Expected Id");
+		Reporter.Assert(isAssign(tokens.current()), "Expected Id but was " + tokens.current());
 		Id.parse(tokens);
 
 		parseEqualSign(tokens);

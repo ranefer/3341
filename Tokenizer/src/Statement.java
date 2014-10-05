@@ -13,7 +13,7 @@ public class Statement {
 	}
 
 	public static void parse(Token tokens) {
-		Reporter.Assert(isStatement(tokens.current()), "Expected Statement");
+		Reporter.Assert(isStatement(tokens.current()), "Expected Statement but was "+ tokens.current());
 		if (Assign.isAssign(tokens.current()))
 			Assign.parse(tokens);
 		else if (If.isIf(tokens.current()))
@@ -25,7 +25,7 @@ public class Statement {
 		else if (Output.isOutput(tokens.current()))
 			Output.parse(tokens);
 		else
-			Reporter.Assert(false, "Expected Statement");
+			Reporter.Assert(false, "Expected Statement but was " + tokens.current());
 
 		if (tokens.hasCurrent() && isStatement(tokens.current()))
 			Statement.parse(tokens);

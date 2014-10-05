@@ -7,7 +7,7 @@ public class Comma {
 	}
 
 	public static void parse(Token tokens) {
-		Reporter.Assert(isComma(tokens.current()), "Expected ';'");
+		Reporter.Assert(isComma(tokens.current()), "Expected ';' but was " + tokens.current());
 		Tokenizer.result.add(13);
 		tokens.skip();
 	}

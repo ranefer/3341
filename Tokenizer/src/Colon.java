@@ -7,7 +7,7 @@ public class Colon {
 	}
 
 	public static void parse(Token tokens) {
-		Reporter.Assert(isColon(tokens.current()), "Expected ';'");
+		Reporter.Assert(isColon(tokens.current()), "Expected ';' but was " + tokens.current());
 		Tokenizer.result.add(12);
 		tokens.skip();
 	}

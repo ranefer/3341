@@ -7,7 +7,7 @@ public class Input {
 	}
 
 	public static void parse(Token tokens) {
-		Reporter.Assert(isInput(tokens.current()), "Expected Input");
+		Reporter.Assert(isInput(tokens.current()), "Expected Input but was " + tokens.current());
 		Tokenizer.result.add(10);
 		tokens.skip();
 

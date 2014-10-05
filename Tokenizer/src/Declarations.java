@@ -7,7 +7,7 @@ public class Declarations {
 	}
 
 	public static void parse(Token tokens) {
-		Reporter.Assert(isDeclaration(tokens.current()), "Expected Declaration");
+		Reporter.Assert(isDeclaration(tokens.current()), "Expected Declaration but was " + tokens.current());
 		Tokenizer.result.add(4);
 		tokens.skip();
 

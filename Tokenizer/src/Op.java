@@ -13,7 +13,7 @@ public class Op {
 	}
 
 	public static void parse(Token tokens) {
-		Reporter.Assert(isOp(tokens.current()), "Expected Op");
+		Reporter.Assert(isOp(tokens.current()), "Expected Op but was " + tokens.current());
 
 		String alternative = tokens.current();
 
@@ -22,13 +22,13 @@ public class Op {
 			tokens.skip();
 		} else if (Id.isId(alternative)) {
 			Id.parse(tokens);
-		} else if (alternative.equals("(")) {
+		} else if (alternative.equals("'(' but was "+ tokens.current())) {
 			Tokenizer.result.add(20); // (
 			Expression.parse(tokens);
-			assert (tokens.current().equals(")")) : "Expected ')'";
+			Reporter.Assert (tokens.current().equals(")"), "Expected ')' but was "+ tokens.current());
 			Tokenizer.result.add(21); // )
 			tokens.skip();
 		} else
-			assert (false) : "Expected Op";
+			Reporter.Assert (false,"Expected Op but was "+ tokens.current());
 	}
 }

@@ -7,7 +7,7 @@ public class Factor {
 	}
 
 	public static void parse(Token tokens) {
-		Reporter.Assert(isFactor(tokens.current()), "Expected Factor");
+		Reporter.Assert(isFactor(tokens.current()), "Expected Factor but was " + tokens.current());
 		Op.parse(tokens);
 
 		if (tokens.hasCurrent() && tokens.equals("*")) {

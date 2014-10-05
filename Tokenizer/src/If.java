@@ -7,19 +7,19 @@ public class If {
 	}
 
 	public static void parse(Token tokens) {
-		Reporter.Assert(isIf(tokens.current()), "Expected If");
+		Reporter.Assert(isIf(tokens.current()), "Expected If but was " + tokens.current());
 		tokens.skip();
 
 		Condition.parse(tokens);
 
-		Reporter.Assert(tokens.current().equals("then"), "Expected 'then',");
+		Reporter.Assert(tokens.current().equals("then"), "Expected 'then' but was " + tokens.current());
 		tokens.skip();
 
 		Statement.parse(tokens);
 
 		parseElse(tokens);
 
-		Reporter.Assert(tokens.current().equals("end"), "Expected 'end'");
+		Reporter.Assert(tokens.current().equals("end"), "Expected 'end' but was " + tokens.current());
 		tokens.skip();
 		
 		Colon.parse(tokens);

@@ -7,7 +7,7 @@ public class Id {
 	}
 
 	public static void parse(Token tokens) {
-		Reporter.Assert(isId(tokens.current()), "Expected Id");
+		Reporter.Assert(isId(tokens.current()), "Expected Id but was " + tokens.current());
 		Tokenizer.result.add(32); // id
 		tokens.skip();
 

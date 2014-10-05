@@ -23,7 +23,7 @@ public class Program {
 
 		parseEnd(tokens);
 
-		Reporter.Assert(!tokens.hasNext(), "Expected end of file");
+		Reporter.Assert(!tokens.hasNext(), "Expected end of file but was " + tokens.current());
 		Tokenizer.result.add(33); // EOF
 	}
 

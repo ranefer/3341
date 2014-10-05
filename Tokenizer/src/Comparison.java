@@ -7,7 +7,7 @@ public class Comparison {
 	}
 
 	public static void parse(Token tokens) {
-		Reporter.Assert(isComparison(tokens.current()), "Expected Comparison");
+		Reporter.Assert(isComparison(tokens.current()), "Expected Comparison but was " + tokens.current());
 
 		parseOpenParen(tokens);
 
@@ -21,14 +21,14 @@ public class Comparison {
 	}
 
 	private static void parseOpenParen(Token tokens) {
-		Reporter.Assert(tokens.current().equals("("), "Expected '(',");
+		Reporter.Assert(tokens.current().equals("("), "Expected '(' but was " + tokens.current());
 		Tokenizer.result.add(20); // (
 
 		tokens.skip();
 	}
 
 	private static void parseClosedParen(Token tokens) {
-		Reporter.Assert(tokens.current().equals(")"), "Expected ')',");
+		Reporter.Assert(tokens.current().equals(")"), "Expected ')' but was " + tokens.current());
 		Tokenizer.result.add(21); // )
 
 		tokens.skip();
