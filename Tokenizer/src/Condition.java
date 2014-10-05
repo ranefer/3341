@@ -10,53 +10,53 @@ public class Condition {
 		return result;
 	}
 
-	public static void parse(Token tokens) {
-		Reporter.Assert(isCondition(tokens.current()), "Expected Condition but was " + tokens.current());
+	public static void parse(Token tokens, ArrayList<Integer> t) {
+		Reporter.Assert(tokens.hasCurrent() && isCondition(tokens.current()), "Expected Condition");
 
 		String alternative = tokens.current();
 
 		if (Comparison.isComparison(alternative)) {
-			Comparison.parse(tokens);
+			Comparison.parse(tokens, t);
 		} else if (alternative.equals("!")) {
-			parseExclamationPoint(tokens);
-			Condition.parse(tokens);
+			parseExclamationPoint(tokens, t);
+			Condition.parse(tokens, t);
 		} else if (alternative.equals("[")) {
-			parseOpenBracket(tokens);
-			Condition.parse(tokens);
-			parseSymbol(tokens);
-			Condition.parse(tokens);
-			parseClosedBracket(tokens);
+			parseOpenBracket(tokens, t);
+			Condition.parse(tokens, t);
+			parseSymbol(tokens, t);
+			Condition.parse(tokens, t);
+			parseClosedBracket(tokens, t);
 		}
 	}
 
-	public static void parseExclamationPoint(Token tokens) {
-		Reporter.Assert(tokens.current().equals("!"), "Expected '!' but was " + tokens.current());
-		Tokenizer.result.add(15); // !
+	public static void parseExclamationPoint(Token tokens, ArrayList<Integer> t) {
+		Reporter.Assert(tokens.current().equals("!"), "Expected '!'");
+		t.add(15); // !
 
 		tokens.skip();
 	}
 
-	public static void parseOpenBracket(Token tokens) {
-		Reporter.Assert(tokens.current().equals("["), "Expected '[' but was " + tokens.current());
-		Tokenizer.result.add(16);
+	public static void parseOpenBracket(Token tokens, ArrayList<Integer> t) {
+		Reporter.Assert(tokens.current().equals("["), "Expected '['");
+		t.add(16);
 
 		tokens.skip();
 	}
 
-	public static void parseClosedBracket(Token tokens) {
-		Reporter.Assert(tokens.current().equals("]"), "Expected ']' but was " + tokens.current());
-		Tokenizer.result.add(17);
+	public static void parseClosedBracket(Token tokens, ArrayList<Integer> t) {
+		Reporter.Assert(tokens.current().equals("]"), "Expected ']'");
+		t.add(17);
 
 		tokens.skip();
 	}
 
-	public static void parseSymbol(Token tokens) {
+	public static void parseSymbol(Token tokens, ArrayList<Integer> t) {
 		if (tokens.current().equals("&&"))
-			Tokenizer.result.add(18); // &&
+			t.add(18); // &&
 		else if (tokens.current().equals("||"))// 18
-			Tokenizer.result.add(19); // ||
+			t.add(19); // ||
 		else
-			Reporter.Assert(false, "Expected '&&' or '||' but was " + tokens.current());
+			Reporter.Assert(false, "Expected '&&' or '||'");
 
 		tokens.skip();
 	}

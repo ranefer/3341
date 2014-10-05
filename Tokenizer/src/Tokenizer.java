@@ -33,7 +33,7 @@ public class Tokenizer {
 		}
 		Token tokens = new Token(ARGS);
 
-		Program.parse(tokens);
+		Program.parse(tokens, result);
 
 		Reporter.Report();
 	}

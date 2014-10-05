@@ -6,17 +6,17 @@ public class Expression {
 		return Factor.isFactor(token);
 	}
 
-	public static void parse(Token tokens) {
-		Reporter.Assert(isExpression(tokens.current()), "Expected Expression but was " + tokens.current());
+	public static void parse(Token tokens, ArrayList<Integer> t) {
+		Reporter.Assert(tokens.hasCurrent() && isExpression(tokens.current()), "Expected Expression");
 
-		Factor.parse(tokens);
+		Factor.parse(tokens, t);
 
 		if (tokens.hasCurrent() && tokens.current().equals("+")) {
-			Tokenizer.result.add(22);
-			Expression.parse(tokens);
+			t.add(22);
+			Expression.parse(tokens, t);
 		} else if (tokens.hasCurrent() && tokens.current().equals("-")) {
-			Tokenizer.result.add(23);
-			Expression.parse(tokens);
+			t.add(23);
+			Expression.parse(tokens, t);
 		}
 	}
 }

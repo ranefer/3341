@@ -4,7 +4,6 @@ public class Token {
 
 	ArrayList<String> tokens;
 	private int currentToken;
-	private String TOKEN;
 
 	public Token(ArrayList<String> tokens) {
 		currentToken = 0;
@@ -12,10 +11,7 @@ public class Token {
 	}
 
 	public String next() throws IndexOutOfBoundsException {
-		assert (hasNext());
-		currentToken++;
-		setToken();
-		return tokens.get(currentToken);
+		return tokens.get(++currentToken);
 	}
 
 	public void skip() {
@@ -23,8 +19,6 @@ public class Token {
 	}
 
 	public String current() throws IndexOutOfBoundsException {
-		Reporter.Assert(hasCurrent(), "Not expecting EOF");
-		setToken();
 		return tokens.get(currentToken);
 	}
 
@@ -34,9 +28,5 @@ public class Token {
 
 	public boolean hasNext() {
 		return tokens.size() > currentToken + 1;
-	}
-	
-	private void setToken(){
-		this.TOKEN = tokens.get(currentToken);
 	}
 }

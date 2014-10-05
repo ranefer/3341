@@ -9,35 +9,30 @@ public class Program {
 		return token.equals("program");
 	}
 
-	public static void parse(Token tokens) {
-		Reporter.Assert(isProgram(tokens.current()),
+	public static void parse(Token tokens, ArrayList<Integer> t) {
+		Reporter.Assert(tokens.hasCurrent() && isProgram(tokens.current()),
 				"Expected: program but was '" + tokens.current() + "'");
 		tokens.skip();
-		Tokenizer.result.add(1); // program
+		t.add(1); // program
 
-		Declarations.parse(tokens);
+		Declarations.parse(tokens, t);
 
-		parseBegin(tokens);
+		parseBegin(tokens, t);
 
-		Statement.parse(tokens);
+		Statement.parse(tokens, t);
 
-		parseEnd(tokens);
+		End.parse(tokens, t);
 
-		Reporter.Assert(!tokens.hasNext(), "Expected end of file");
-		Tokenizer.result.add(33); // EOF
+		Reporter.Assert(!tokens.hasCurrent(), "Expected end of file");
+		t.add(33); // EOF
 	}
 
-	private static void parseBegin(Token tokens) {
-		Reporter.Assert(tokens.current().equals("begin"),
+	private static void parseBegin(Token tokens, ArrayList<Integer> t) {
+		Reporter.Assert(tokens.hasCurrent() && tokens.current().equals("begin"),
 				"Expected: begin but was '" + tokens.current() + "'");
-		Tokenizer.result.add(2); // begin
+		t.add(2); // begin
 		tokens.skip();
 	}
 
-	private static void parseEnd(Token tokens) {
-		Reporter.Assert(tokens.current().equals("end"),
-				"Expected: end but was '" + tokens.current() + "'");
-		Tokenizer.result.add(3); // end
-		tokens.skip();
-	}
+	
 }

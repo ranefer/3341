@@ -6,16 +6,16 @@ public class Declarations {
 		return token.equals("int");
 	}
 
-	public static void parse(Token tokens) {
-		Reporter.Assert(isDeclaration(tokens.current()), "Expected Declaration but was " + tokens.current());
-		Tokenizer.result.add(4);
+	public static void parse(Token tokens, ArrayList<Integer> t) {
+		Reporter.Assert(tokens.hasCurrent() && isDeclaration(tokens.current()), "Expected Declaration");
+		t.add(4);
 		tokens.skip();
 
-		Id.parse(tokens);
+		Id.parse(tokens, t);
 
-		Colon.parse(tokens);
+		Colon.parse(tokens, t);
 
 		if (isDeclaration(tokens.current()))
-			Declarations.parse(tokens);
+			Declarations.parse(tokens, t);
 	}
 }

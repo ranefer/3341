@@ -6,57 +6,57 @@ public class Comparison {
 		return token.equals("(");
 	}
 
-	public static void parse(Token tokens) {
-		Reporter.Assert(isComparison(tokens.current()), "Expected Comparison but was " + tokens.current());
+	public static void parse(Token tokens, ArrayList<Integer> t) {
+		Reporter.Assert(tokens.hasCurrent() && isComparison(tokens.current()), "Expected Comparison");
 
-		parseOpenParen(tokens);
+		parseOpenParen(tokens, t);
 
-		Op.parse(tokens);
+		Op.parse(tokens, t);
 
-		parseCompareOperator(tokens);
+		parseCompareOperator(tokens, t);
 
-		Op.parse(tokens);
+		Op.parse(tokens, t);
 
-		parseClosedParen(tokens);
+		parseClosedParen(tokens, t);
 	}
 
-	private static void parseOpenParen(Token tokens) {
-		Reporter.Assert(tokens.current().equals("("), "Expected '(' but was " + tokens.current());
-		Tokenizer.result.add(20); // (
+	private static void parseOpenParen(Token tokens, ArrayList<Integer> t) {
+		Reporter.Assert(tokens.hasCurrent() && tokens.current().equals("("), "Expected '(',");
+		t.add(20); // (
 
 		tokens.skip();
 	}
 
-	private static void parseClosedParen(Token tokens) {
-		Reporter.Assert(tokens.current().equals(")"), "Expected ')' but was " + tokens.current());
-		Tokenizer.result.add(21); // )
+	private static void parseClosedParen(Token tokens, ArrayList<Integer> t) {
+		Reporter.Assert(tokens.hasCurrent() && tokens.current().equals(")"), "Expected ')',");
+		t.add(21); // )
 
 		tokens.skip();
 	}
 
-	private static void parseCompareOperator(Token tokens) {
+	private static void parseCompareOperator(Token tokens, ArrayList<Integer> t) {
 		if (tokens.hasNext()) {
 			switch (tokens.current()) {
 			case "!=":
-				Tokenizer.result.add(25);
+				t.add(25);
 				break;
 			case "==":
-				Tokenizer.result.add(26);
+				t.add(26);
 				break;
 			case "<":
-				Tokenizer.result.add(27);
+				t.add(27);
 				break;
 			case ">":
-				Tokenizer.result.add(28);
+				t.add(28);
 				break;
 			case "<=":
-				Tokenizer.result.add(29);
+				t.add(29);
 				break;
 			case ">=":
-				Tokenizer.result.add(30);
+				t.add(30);
 				break;
 			default:
-				Reporter.Assert(false, "Exptected a comparision but was "
+				Reporter.Assert(tokens.hasCurrent() && false, "Exptected a comparision but was "
 						+ tokens.current());
 			}
 		} else
