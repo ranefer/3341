@@ -10,13 +10,10 @@ public class Assign {
 		assert (isAssign(tokens.current()));
 		Id.parse(tokens, t);
 		
-		assert(tokens.hasCurrent()) : "Expected '='";
         parseEqualSign(tokens, t);
 		
-		assert(tokens.hasCurrent() && Expression.isExpression(tokens.current())) : "Expected expression";
 		Expression.parse(tokens, t);
 		
-		assert(tokens.hasCurrent() && Colon.isColon(tokens.current())) : "Expected ';'";
 		Colon.parse(tokens, t);
 	}
 	

@@ -10,18 +10,16 @@ public class If {
 		assert (isIf(tokens.current()));
 		tokens.skip();
 
-		assert (tokens.hasCurrent() && Condition.isCondition(tokens.current())) : "Expected a condition";
 		Condition.parse(tokens, t);
 
-		assert(tokens.hasCurrent() && tokens.current().equals("then")): "Expected 'then'";
+		assert(tokens.current().equals("then")): "Expected 'then'";
 		tokens.skip();
 
-		assert(tokens.hasCurrent() && Statement.isStatement(tokens.current())) : "Expected a statement";
 		Statement.parse(tokens, t);
 
 		parseElse(tokens, t);
 		
-		assert(tokens.hasCurrent() && tokens.current().equals("end")) : "Expected 'end'";
+		assert(tokens.current().equals("end")) : "Expected 'end'";
 		tokens.skip();
 	}
 

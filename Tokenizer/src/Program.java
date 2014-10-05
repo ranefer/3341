@@ -15,16 +15,12 @@ public final String[] RESERVED = {"program", "begin", "end", "if", "int", "if", 
 		tokens.skip();
 		t.add(1); // program
 		
-        assert(tokens.hasNext() && Declarations.isDeclaration(tokens.current())) : "Expected delcaration";
 		Declarations.parse(tokens, t);
 
-		assert(tokens.hasCurrent()) : "Exptectd 'begin'";
         parseBegin(tokens, t);
 		
-		assert(tokens.hasCurrent() && Statement.isStatement(tokens.current())) : "Expected Statement Sequence";
         Statement.parse(tokens, t);
 		
-        assert(tokens.hasCurrent()) : "Exptected 'end'";
 		parseEnd(tokens, t);
 
     	assert(!tokens.hasNext()) : "Expected end of file";

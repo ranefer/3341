@@ -11,12 +11,10 @@ public class Comparison {
 
 		parseOpenParen(tokens, t);
 		
-		assert(tokens.hasCurrent() && Op.isOp(tokens.current())) : "Expected Op";
 		Op.parse(tokens, t);
 
 		parseCompareOperator(tokens, t);
 		
-		assert(tokens.hasCurrent() && Op.isOp(tokens.current())) : "Expected Op";
 		Op.parse(tokens, t);
 
 		parseClosedParen(tokens, t);

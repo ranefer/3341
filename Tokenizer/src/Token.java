@@ -25,6 +25,7 @@ public class Token {
 	}
 	
 	public String current() throws IndexOutOfBoundsException {
+		assert(hasCurrent()) : "Not expecting EOF";
 		return tokens.get(currentToken);
 	}
 	public boolean hasCurrent() {

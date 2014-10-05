@@ -13,11 +13,9 @@ public class Expression {
 		
 		if(tokens.hasCurrent() && tokens.current().equals("+")) {
 			t.add(22);
-        	assert(tokens.hasNext() && Expression.isExpression(tokens.current()));
         	Expression.parse(tokens, t);
 		} else if(tokens.hasCurrent() && tokens.current().equals("-")) {
 			t.add(23);
-            assert(tokens.hasNext() && Expression.isExpression(tokens.current()));
             Expression.parse(tokens, t);
 		} 
 	}

@@ -12,7 +12,6 @@ public class Factor {
 		
 		if(tokens.hasCurrent() && tokens.equals("*")) {
 			t.add(24);
-			assert(Factor.isFactor(tokens.current()));
 			Factor.parse(tokens, t);
 		}
 	}
