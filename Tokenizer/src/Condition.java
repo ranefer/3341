@@ -11,7 +11,7 @@ public class Condition {
 	}
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(isCondition(tokens.current()), "Expected Condition", t);
+		Reporter.Assert(isCondition(tokens.current()), "Expected Condition");
 
 		String alternative = tokens.current();
 
@@ -30,21 +30,21 @@ public class Condition {
 	}
 
 	public static void parseExclamationPoint(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.current().equals("!"), "Expected '!'", t);
+		Reporter.Assert(tokens.current().equals("!"), "Expected '!'");
 		t.add(15); // !
 
 		tokens.skip();
 	}
 
 	public static void parseOpenBracket(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.current().equals("["), "Expected '['", t);
+		Reporter.Assert(tokens.current().equals("["), "Expected '['");
 		t.add(16);
 
 		tokens.skip();
 	}
 
 	public static void parseClosedBracket(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.current().equals("]"), "Expected ']'", t);
+		Reporter.Assert(tokens.current().equals("]"), "Expected ']'");
 		t.add(17);
 
 		tokens.skip();
@@ -56,7 +56,7 @@ public class Condition {
 		else if (tokens.current().equals("||"))// 18
 			t.add(19); // ||
 		else
-			Reporter.Assert(false, "Expected '&&' or '||'", t);
+			Reporter.Assert(false, "Expected '&&' or '||'");
 
 		tokens.skip();
 	}

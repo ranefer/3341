@@ -7,7 +7,7 @@ public class Assign {
 	}
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(isAssign(tokens.current()), "Expected Id", t);
+		Reporter.Assert(isAssign(tokens.current()), "Expected Id");
 		Id.parse(tokens, t);
 
 		parseEqualSign(tokens, t);
@@ -19,7 +19,7 @@ public class Assign {
 
 	public static void parseEqualSign(Token tokens, ArrayList<Integer> t) {
 		Reporter.Assert(tokens.current().equals("="), "Expected '=' but was "
-				+ tokens.current(), t);
+				+ tokens.current());
 		t.add(14);
 		tokens.skip();
 	}

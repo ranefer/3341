@@ -7,11 +7,11 @@ public class Id {
 	}
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
-		assert(isId(tokens.current()));
+		Reporter.Assert(isId(tokens.current()), "Expected Id");
 		t.add(32); // id
 		tokens.skip();
-		
-		if(tokens.hasCurrent() && Comma.isComma(tokens.current())) {
+
+		if (tokens.hasCurrent() && Comma.isComma(tokens.current())) {
 			Comma.parse(tokens, t);
 			Id.parse(tokens, t);
 		}

@@ -5,9 +5,9 @@ public class Comma {
 	public static boolean isComma(String token) {
 		return token.equals(",");
 	}
-	
+
 	public static void parse(Token tokens, ArrayList<Integer> t) {
-		assert(isComma(tokens.current()));
+		Reporter.Assert(isComma(tokens.current()), "Expected ';'");
 		t.add(13);
 		tokens.skip();
 	}

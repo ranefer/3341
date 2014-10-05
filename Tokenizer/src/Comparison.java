@@ -7,28 +7,28 @@ public class Comparison {
 	}
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
-		assert (isComparison(tokens.current()));
+		Reporter.Assert(isComparison(tokens.current()), "Expected Comparison");
 
 		parseOpenParen(tokens, t);
-		
+
 		Op.parse(tokens, t);
 
 		parseCompareOperator(tokens, t);
-		
+
 		Op.parse(tokens, t);
 
 		parseClosedParen(tokens, t);
 	}
 
 	private static void parseOpenParen(Token tokens, ArrayList<Integer> t) {
-		assert (tokens.current().equals("(")) : "Expected '('";
+		Reporter.Assert(tokens.current().equals("("), "Expected '(',");
 		t.add(20); // (
 
 		tokens.skip();
 	}
 
 	private static void parseClosedParen(Token tokens, ArrayList<Integer> t) {
-		assert (tokens.current().equals(")")) : "Expected ')'";
+		Reporter.Assert(tokens.current().equals(")"), "Expected ')',");
 		t.add(21); // )
 
 		tokens.skip();
@@ -56,15 +56,13 @@ public class Comparison {
 				t.add(30);
 				break;
 			default:
-				assert (false) : "Exptected a comparision but was "
-						+ tokens.current();
+				Reporter.Assert(false, "Exptected a comparision but was "
+						+ tokens.current());
 			}
 		} else
-			assert (false) : "Exptected a comparision but was "
-					+ tokens.current();
+			Reporter.Assert(false,
+					"Exptected a comparision but was " + tokens.current());
 
 		tokens.skip();
 	}
-
-
 }

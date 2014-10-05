@@ -11,7 +11,7 @@ public class Program {
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
 		Reporter.Assert(isProgram(tokens.current()),
-				"Expected: program but was '" + tokens.current() + "'", t);
+				"Expected: program but was '" + tokens.current() + "'");
 		tokens.skip();
 		t.add(1); // program
 
@@ -23,20 +23,20 @@ public class Program {
 
 		parseEnd(tokens, t);
 
-		Reporter.Assert(!tokens.hasNext(), "Expected end of file", t);
+		Reporter.Assert(!tokens.hasNext(), "Expected end of file");
 		t.add(33); // EOF
 	}
 
 	private static void parseBegin(Token tokens, ArrayList<Integer> t) {
 		Reporter.Assert(tokens.current().equals("begin"),
-				"Expected: begin but was '" + tokens.current() + "'", t);
+				"Expected: begin but was '" + tokens.current() + "'");
 		t.add(2); // begin
 		tokens.skip();
 	}
 
 	private static void parseEnd(Token tokens, ArrayList<Integer> t) {
 		Reporter.Assert(tokens.current().equals("end"),
-				"Expected: end but was '" + tokens.current() + "'", t);
+				"Expected: end but was '" + tokens.current() + "'");
 		t.add(3); // end
 		tokens.skip();
 	}

@@ -7,12 +7,11 @@ public class Input {
 	}
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
-		assert(isInput(tokens.current()));
+		Reporter.Assert(isInput(tokens.current()), "Expected Input");
 		t.add(10);
 		tokens.skip();
-		
+
 		Id.parse(tokens, t);
 		Colon.parse(tokens, t);
 	}
-
 }

@@ -13,21 +13,21 @@ public class Statement {
 	}
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
-		assert (isStatement(tokens.current()));
-        if(Assign.isAssign(tokens.current()))
-        	Assign.parse(tokens, t);
-		else if(If.isIf(tokens.current())) 
+		Reporter.Assert(isStatement(tokens.current()), "Expected Statement");
+		if (Assign.isAssign(tokens.current()))
+			Assign.parse(tokens, t);
+		else if (If.isIf(tokens.current()))
 			If.parse(tokens, t);
-		else if(Loop.isLoop(tokens.current())) 
+		else if (Loop.isLoop(tokens.current()))
 			Loop.parse(tokens, t);
-		else if(Input.isInput(tokens.current())) 
+		else if (Input.isInput(tokens.current()))
 			Input.parse(tokens, t);
-		else if(Output.isOutput(tokens.current())) 
+		else if (Output.isOutput(tokens.current()))
 			Output.parse(tokens, t);
-		else 
-			assert(false);
+		else
+			Reporter.Assert(false, "Expected Statement");
 
-        if(tokens.hasCurrent() && isStatement(tokens.current()))
-        	Statement.parse(tokens, t);
+		if (tokens.hasCurrent() && isStatement(tokens.current()))
+			Statement.parse(tokens, t);
 	}
 }

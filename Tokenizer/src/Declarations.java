@@ -7,8 +7,7 @@ public class Declarations {
 	}
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(isDeclaration(tokens.current()),
-				"Expected Declaration", t);
+		Reporter.Assert(isDeclaration(tokens.current()), "Expected Declaration");
 		t.add(4);
 		tokens.skip();
 
