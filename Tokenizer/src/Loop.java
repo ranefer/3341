@@ -6,19 +6,17 @@ public class Loop {
 		return token.equals("while");
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.hasCurrent() && isLoop(tokens.current()), "Expected Loop");
-		tokens.skip();
+	public static void parse(Symbol symbols) {
+		Reporter.Assert(symbols.hasCurrent() && isLoop(symbols.current()), "Loop");
+		symbols.skip();
 
-		Condition.parse(tokens, t);
+		Condition.parse(symbols);
 
-		Reporter.Assert(tokens.hasCurrent() && tokens.current().equals("loop"), "Expected 'loop',");
-		tokens.skip();
+		Reporter.Assert(symbols.hasCurrent() && symbols.current().equals("loop"), "loop");
+		symbols.skip();
 
-		Statement.parse(tokens, t);
-
-		End.parse(tokens, t);
-		
-		Colon.parse(tokens, t);
+		Statement.parse(symbols);
+		End.parse(symbols);
+		Colon.parse(symbols);
 	}
 }

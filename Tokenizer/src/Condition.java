@@ -10,54 +10,54 @@ public class Condition {
 		return result;
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.hasCurrent() && isCondition(tokens.current()), "Expected Condition");
+	public static void parse(Symbol symbols) {
+		Reporter.Assert(symbols.hasCurrent() && isCondition(symbols.current()), "Condition");
 
-		String alternative = tokens.current();
+		String alternative = symbols.current();
 
 		if (Comparison.isComparison(alternative)) {
-			Comparison.parse(tokens, t);
+			Comparison.parse(symbols);
 		} else if (alternative.equals("!")) {
-			parseExclamationPoint(tokens, t);
-			Condition.parse(tokens, t);
+			parseExclamationPoint(symbols);
+			Condition.parse(symbols);
 		} else if (alternative.equals("[")) {
-			parseOpenBracket(tokens, t);
-			Condition.parse(tokens, t);
-			parseSymbol(tokens, t);
-			Condition.parse(tokens, t);
-			parseClosedBracket(tokens, t);
+			parseOpenBracket(symbols);
+			Condition.parse(symbols);
+			parseSymbol(symbols);
+			Condition.parse(symbols);
+			parseClosedBracket(symbols);
 		}
 	}
 
-	public static void parseExclamationPoint(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.current().equals("!"), "Expected '!'");
-		t.add(15); // !
+	public static void parseExclamationPoint(Symbol symbols) {
+		Reporter.Assert(symbols.hasCurrent() && symbols.current().equals("!"), "!");
+		Tokens.add(15); // !
 
-		tokens.skip();
+		symbols.skip();
 	}
 
-	public static void parseOpenBracket(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.current().equals("["), "Expected '['");
-		t.add(16);
+	public static void parseOpenBracket(Symbol symbols) {
+		Reporter.Assert(symbols.hasCurrent() && symbols.current().equals("["), "[");
+		Tokens.add(16);
 
-		tokens.skip();
+		symbols.skip();
 	}
 
-	public static void parseClosedBracket(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.current().equals("]"), "Expected ']'");
-		t.add(17);
+	public static void parseClosedBracket(Symbol symbols) {
+		Reporter.Assert(symbols.hasCurrent() && symbols.current().equals("]"), "]");
+		Tokens.add(17);
 
-		tokens.skip();
+		symbols.skip();
 	}
 
-	public static void parseSymbol(Token tokens, ArrayList<Integer> t) {
-		if (tokens.current().equals("&&"))
-			t.add(18); // &&
-		else if (tokens.current().equals("||"))// 18
-			t.add(19); // ||
+	public static void parseSymbol(Symbol symbols) {
+		if (symbols.current().equals("&&"))
+			Tokens.add(18); // &&
+		else if (symbols.current().equals("||"))// 18
+			Tokens.add(19); // ||
 		else
-			Reporter.Assert(false, "Expected '&&' or '||'");
+			Reporter.Assert(symbols.hasCurrent() && false, "'&&' or '||'");
 
-		tokens.skip();
+		symbols.skip();
 	}
 }

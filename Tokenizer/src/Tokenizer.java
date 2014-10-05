@@ -2,11 +2,9 @@ import java.util.ArrayList;
 
 public class Tokenizer {
 
-	public static ArrayList<Integer> result;
 
 	public static void main(String... args) {
 		ArrayList<String> ARGS = new ArrayList<String>();
-		result = new ArrayList<Integer>();
 		String temp = "";
 		for (int i = 0; i < args.length; i++) {
 			args[i] = args[i].replaceAll("[\\(]", " ( ");
@@ -31,9 +29,10 @@ public class Tokenizer {
 						ARGS.add(temp1[j]);
 			}
 		}
-		Token tokens = new Token(ARGS);
+		Symbol symbols= new Symbol(ARGS);
+		Reporter.setSymbols(symbols);
 
-		Program.parse(tokens, result);
+		Program.parse(symbols);
 
 		Reporter.Report();
 	}

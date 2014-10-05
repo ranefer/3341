@@ -6,13 +6,13 @@ public class Factor {
 		return Op.isOp(token); // Factor = { Op | Op * Factor }
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.hasCurrent() && isFactor(tokens.current()), "Expected Factor");
-		Op.parse(tokens, t);
+	public static void parse(Symbol tokens) {
+		Reporter.Assert(tokens.hasCurrent() && isFactor(tokens.current()), "Factor");
+		Op.parse(tokens);
 
 		if (tokens.hasCurrent() && tokens.equals("*")) {
-			t.add(24);
-			Factor.parse(tokens, t);
+			Tokens.add(24);
+			Factor.parse(tokens);
 		}
 	}
 }

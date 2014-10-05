@@ -12,22 +12,22 @@ public class Statement {
 		return result;
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.hasCurrent() && isStatement(tokens.current()), "Expected Statement");
+	public static void parse(Symbol tokens) {
+		Reporter.Assert(tokens.hasCurrent() && isStatement(tokens.current()), "Statement");
 		if (Assign.isAssign(tokens.current()))
-			Assign.parse(tokens, t);
+			Assign.parse(tokens);
 		else if (If.isIf(tokens.current()))
-			If.parse(tokens, t);
+			If.parse(tokens);
 		else if (Loop.isLoop(tokens.current()))
-			Loop.parse(tokens, t);
+			Loop.parse(tokens);
 		else if (Input.isInput(tokens.current()))
-			Input.parse(tokens, t);
+			Input.parse(tokens);
 		else if (Output.isOutput(tokens.current()))
-			Output.parse(tokens, t);
+			Output.parse(tokens);
 		else
-			Reporter.Assert(false, "Expected Statement");
+			Reporter.Assert(tokens.hasCurrent() && false, "Statement");
 
 		if (tokens.hasCurrent() && isStatement(tokens.current()))
-			Statement.parse(tokens, t);
+			Statement.parse(tokens);
 	}
 }

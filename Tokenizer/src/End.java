@@ -6,10 +6,9 @@ public class End {
 		return token.equals("end");
 	}
 	
-	public static void parse(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.hasCurrent() && tokens.current().equals("end"),
-				"Expected: 'end' but was '" + tokens.current() + "'");
-		t.add(3); // end
-		tokens.skip();
+	public static void parse(Symbol symbol) {
+		Reporter.Assert(symbol.hasCurrent() && symbol.current().equals("end"), "end");
+		Tokens.add(3); // end
+		symbol.skip();
 	}
 }

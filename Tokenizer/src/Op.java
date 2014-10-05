@@ -12,23 +12,23 @@ public class Op {
 		return result;
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(isOp(tokens.current()), "Expected Op");
+	public static void parse(Symbol symbols) {
+		Reporter.Assert(symbols.hasCurrent() && isOp(symbols.current()), "Op");
 
-		String alternative = tokens.current();
+		String alternative = symbols.current();
 
 		if (alternative.matches("[0-9]+")) {
-			t.add(31); // integer
-			tokens.skip();
+			Tokens.add(31); // integer
+			symbols.skip();
 		} else if (Id.isId(alternative)) {
-			Id.parse(tokens, t);
-		} else if (alternative.equals("(")) {
-			t.add(20); // (
-			Expression.parse(tokens, t);
-			assert (tokens.current().equals(")")) : "Expected ')'";
-			t.add(21); // )
-			tokens.skip();
+			Id.parse(symbols);
+		} else if (alternative.equals("'(' but was "+ symbols.current())) {
+			Tokens.add(20); // (
+			Expression.parse(symbols);
+			Reporter.Assert (symbols.current().equals(")"), ")");
+			Tokens.add(21); // )
+			symbols.skip();
 		} else
-			assert (false) : "Expected Op";
+			Reporter.Assert (false,"Op");
 	}
 }

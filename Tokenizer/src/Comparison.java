@@ -6,63 +6,62 @@ public class Comparison {
 		return token.equals("(");
 	}
 
-	public static void parse(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.hasCurrent() && isComparison(tokens.current()), "Expected Comparison");
+	public static void parse(Symbol symbols) {
+		Reporter.Assert(symbols.hasCurrent() && isComparison(symbols.current()), "(");
 
-		parseOpenParen(tokens, t);
+		parseOpenParen(symbols);
 
-		Op.parse(tokens, t);
+		Op.parse(symbols);
 
-		parseCompareOperator(tokens, t);
+		parseCompareOperator(symbols);
 
-		Op.parse(tokens, t);
+		Op.parse(symbols);
 
-		parseClosedParen(tokens, t);
+		parseClosedParen(symbols);
 	}
 
-	private static void parseOpenParen(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.hasCurrent() && tokens.current().equals("("), "Expected '(',");
-		t.add(20); // (
+	private static void parseOpenParen(Symbol symbols) {
+		Reporter.Assert(symbols.hasCurrent() && symbols.current().equals("("), "(");
+		Tokens.add(20); // (
 
-		tokens.skip();
+		symbols.skip();
 	}
 
-	private static void parseClosedParen(Token tokens, ArrayList<Integer> t) {
-		Reporter.Assert(tokens.hasCurrent() && tokens.current().equals(")"), "Expected ')',");
-		t.add(21); // )
+	private static void parseClosedParen(Symbol symbols) {
+		Reporter.Assert(symbols.hasCurrent() && symbols.current().equals(")"), ")");
+		Tokens.add(21); // )
 
-		tokens.skip();
+		symbols.skip();
 	}
 
-	private static void parseCompareOperator(Token tokens, ArrayList<Integer> t) {
-		if (tokens.hasNext()) {
-			switch (tokens.current()) {
+	private static void parseCompareOperator(Symbol symbols) {
+		if (symbols.hasNext()) {
+			switch (symbols.current()) {
 			case "!=":
-				t.add(25);
+				Tokens.add(25);
 				break;
 			case "==":
-				t.add(26);
+				Tokens.add(26);
 				break;
 			case "<":
-				t.add(27);
+				Tokens.add(27);
 				break;
 			case ">":
-				t.add(28);
+				Tokens.add(28);
 				break;
 			case "<=":
-				t.add(29);
+				Tokens.add(29);
 				break;
 			case ">=":
-				t.add(30);
+				Tokens.add(30);
 				break;
 			default:
-				Reporter.Assert(tokens.hasCurrent() && false, "Exptected a comparision but was "
-						+ tokens.current());
+				Reporter.Assert(false, "comparision");
 			}
 		} else
 			Reporter.Assert(false,
-					"Exptected a comparision but was " + tokens.current());
+					"comparision");
 
-		tokens.skip();
+		symbols.skip();
 	}
 }
