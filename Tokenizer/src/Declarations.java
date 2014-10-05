@@ -7,12 +7,13 @@ public class Declarations {
 	}
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
-		assert (isDeclaration(tokens.current()));
+		Reporter.Assert(isDeclaration(tokens.current()),
+				"Expected Declaration", t);
 		t.add(4);
 		tokens.skip();
 
 		Id.parse(tokens, t);
-		
+
 		Colon.parse(tokens, t);
 
 		if (isDeclaration(tokens.current()))

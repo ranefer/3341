@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Condition {
-	
+
 	public static boolean isCondition(String token) {
 		boolean result = false;
 		result = result || token.equals("!");
@@ -11,7 +11,7 @@ public class Condition {
 	}
 
 	public static void parse(Token tokens, ArrayList<Integer> t) {
-		assert (isCondition(tokens.current()));
+		Reporter.Assert(isCondition(tokens.current()), "Expected Condition", t);
 
 		String alternative = tokens.current();
 
@@ -30,33 +30,33 @@ public class Condition {
 	}
 
 	public static void parseExclamationPoint(Token tokens, ArrayList<Integer> t) {
-		assert (tokens.current().equals("!")) : "Expected '!'";
+		Reporter.Assert(tokens.current().equals("!"), "Expected '!'", t);
 		t.add(15); // !
 
 		tokens.skip();
 	}
 
 	public static void parseOpenBracket(Token tokens, ArrayList<Integer> t) {
-		assert(tokens.current().equals("[")) : "Expected '[";
+		Reporter.Assert(tokens.current().equals("["), "Expected '['", t);
 		t.add(16);
 
 		tokens.skip();
 	}
 
 	public static void parseClosedBracket(Token tokens, ArrayList<Integer> t) {
-		assert (tokens.current().equals("]")) : "Expected ']'";
+		Reporter.Assert(tokens.current().equals("]"), "Expected ']'", t);
 		t.add(17);
-		
+
 		tokens.skip();
 	}
 
 	public static void parseSymbol(Token tokens, ArrayList<Integer> t) {
-		if(tokens.current().equals("&&"))
+		if (tokens.current().equals("&&"))
 			t.add(18); // &&
-		else if(tokens.current().equals("||"))//18
+		else if (tokens.current().equals("||"))// 18
 			t.add(19); // ||
 		else
-            assert (false) : "Expected '&&' or '||'";
+			Reporter.Assert(false, "Expected '&&' or '||'", t);
 
 		tokens.skip();
 	}
