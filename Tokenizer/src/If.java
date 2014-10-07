@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class If {
 
 	public static boolean isIf(String token) {
@@ -8,11 +6,14 @@ public class If {
 
 	public static void parse(Symbol symbols) {
 		Reporter.Assert(isIf(symbols.current()), "if");
+		Tokens.add(5);
 		symbols.skip();
 
 		Condition.parse(symbols);
 
-		Reporter.Assert(symbols.hasCurrent() && symbols.current().equals("then"), "then");
+		Reporter.Assert(symbols.hasCurrent()
+				&& symbols.current().equals("then"), "then");
+		Tokens.add(6);
 		symbols.skip();
 
 		Statement.parse(symbols);
@@ -20,28 +21,17 @@ public class If {
 		parseElse(symbols);
 
 		End.parse(symbols);
-		
+
 		Colon.parse(symbols);
 	}
 
-	public static void parseCondition(Symbol tokens) {
-		String openParen = tokens.current();
-		Reporter.Assert(openParen.equals("("), "(");
-
-		Condition.parse(tokens);
-
-		String closedParen = tokens.current();
-		Reporter.Assert(closedParen.equals(")"), ")");
-
-		tokens.skip();
-	}
-
-	private static void parseElse(Symbol tokens) {
-		if (tokens.hasNext()) {
-			if (tokens.current().equals("else")) {
-				tokens.next();
-				if (Statement.isStatement(tokens.current()))
-					Statement.parse(tokens);
+	private static void parseElse(Symbol symbols) {
+		if (symbols.hasNext()) {
+			if (symbols.current().equals("else")) {
+				Tokens.add(7);
+				symbols.next();
+				if (Statement.isStatement(symbols.current()))
+					Statement.parse(symbols);
 			}
 		}
 	}
