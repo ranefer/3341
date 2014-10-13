@@ -1,0 +1,12 @@
+program
+int X,Y,Z,X1234;
+int O;
+begin
+	write X;
+	if (X==4) then
+		while (Y==7) loop
+			Z=4;
+		end;
+	end;
+end
+			
