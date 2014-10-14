@@ -1,8 +1,22 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Tokenizer {
 
 	public static void main(String... args) {
+		ArrayList<String> redirectedArgs = new ArrayList();
+		Scanner scanner = new Scanner(System.in);
+		if (args.length == 0) {
+			int i = 0;
+			while (scanner.hasNext())
+				redirectedArgs.add(scanner.next());
+		} else {
+			args = new String[redirectedArgs.size()];
+			for (int i = 0; i < args.length; i++) {
+				args[i] = redirectedArgs.get(i);
+			}
+		}
+
 		ArrayList<String> ARGS = new ArrayList<String>();
 		String temp = "";
 		for (int i = 0; i < args.length; i++) {
