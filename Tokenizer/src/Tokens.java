@@ -13,10 +13,10 @@ public class Tokens {
 		setTokenizerMapping();
 	}
 
-	public int getNext() {
+	public int getToken() {
 		int result = -1;
 		try {
-			result = tokenizer.get(symbols.next());
+			result = tokenizer.get(symbols.getSymbol());
 		} catch (Exception e) {
 			System.out.println("Error");
 			System.exit(10);
@@ -24,8 +24,8 @@ public class Tokens {
 		return result;
 	}
 
-	public boolean hasNext() {
-		return symbols.hasNext();
+	public boolean hasCurrent() {
+		return symbols.hasCurrent();
 	}
 
 	public void skip() {

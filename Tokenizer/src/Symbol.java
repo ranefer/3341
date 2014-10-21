@@ -6,13 +6,13 @@ public class Symbol {
 	private int index;
 
 	public Symbol(ArrayList<String> symbols) {
-		index = -1;
+		index = 0;
 		this.symbols = symbols;
 		this.symbols.add("_EOF");
 	}
 
-	public String next() throws IndexOutOfBoundsException {
-		String symbol = symbols.get(++index);
+	public String getSymbol() throws IndexOutOfBoundsException {
+		String symbol = symbols.get(index);
 		return doubleCheckNext(symbol);
 	}
 
@@ -20,7 +20,7 @@ public class Symbol {
 		index++;
 	}
 
-	public boolean hasNext() {
+	public boolean hasCurrent() {
 		return index < this.symbols.size() - 1;
 	}
 
@@ -61,6 +61,5 @@ public class Symbol {
 		default:
 			return symbol;
 		}
-
 	}
 }

@@ -40,8 +40,9 @@ public class Tokenizer {
 		}
 		Tokens tokens = new Tokens(new Symbol(ARGS));
 
-		while (tokens.hasNext()) {
-			System.out.print(tokens.getNext() + " ");
+		while (tokens.hasCurrent()) {
+			System.out.print(tokens.getToken() + " ");
+			tokens.skip();
 		}
 	}
 }
