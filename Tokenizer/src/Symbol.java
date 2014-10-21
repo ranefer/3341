@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Symbol {
+public class Symbol implements Production {
 
 	ArrayList<String> symbols;
 	private int index;
@@ -62,4 +62,13 @@ public class Symbol {
 			return symbol;
 		}
 	}
+
+	public void execute() {
+
+	}
+
+	public void print() {
+
+	}
+
 }

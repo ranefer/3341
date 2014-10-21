@@ -1,6 +1,6 @@
-import java.util.ArrayList;
+public class Statement implements Production {
 
-public class Statement {
+	Production body;
 
 	public static boolean isStatement(int token) {
 		boolean result = false;
@@ -12,8 +12,9 @@ public class Statement {
 		return result;
 	}
 
-	public static void parse(Tokens tokens) {
-		Reporter.Assert(tokens.hasCurrent() && isStatement(tokens.getToken()), "Statement");
+	public void parse(Tokens tokens) {
+		Reporter.Assert(tokens.hasCurrent() && isStatement(tokens.getToken()),
+				"Statement");
 		if (Assign.isAssign(tokens.getToken()))
 			Assign.parse(tokens);
 		else if (If.isIf(tokens.getToken()))
@@ -30,4 +31,13 @@ public class Statement {
 		if (tokens.hasCurrent() && isStatement(tokens.getToken()))
 			Statement.parse(tokens);
 	}
+
+	public void execute() {
+
+	}
+
+	public void print() {
+
+	}
+
 }

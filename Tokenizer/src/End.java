@@ -1,13 +1,17 @@
-import java.util.ArrayList;
+public class End implements Terminal {
 
-public class End {
-	
 	public static boolean isEnd(int token) {
-		return token==3;
+		return token == 3;
 	}
-	
-	public static void parse(Tokens symbol) {
-		Reporter.Assert(symbol.hasCurrent() && symbol.getToken()==3, "end");
-		symbol.skip();
+
+	public void print() {
+		System.out.println("end");
 	}
+
+	public static void parse(Tokens tokens) {
+		Reporter.Assert(tokens.hasCurrent() && End.isEnd(tokens.getToken()),
+				"end");
+		tokens.skip();
+	}
+
 }

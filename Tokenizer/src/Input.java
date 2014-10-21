@@ -1,16 +1,29 @@
-import java.util.ArrayList;
+public class Input implements Production {
 
-public class Input {
+	Production id;
 
 	public static boolean isInput(int token) {
 		return token == 10;
 	}
 
-	public static void parse(Tokens symbols) {
-		Reporter.Assert(symbols.hasCurrent() && isInput(symbols.getToken()), "read");
+	public void parse(Tokens symbols) {
+		Reporter.Assert(symbols.hasCurrent() && isInput(symbols.getToken()),
+				"read");
 		symbols.skip();
 
-		Id.parse(symbols);
-		Colon.parse(symbols);
+		id.parse(symbols);
+
+		SemiColon.parse(symbols);
 	}
+
+	public void execute() {
+
+	}
+
+	public void print() {
+		System.out.println("read");
+		id.print();
+		SemiColon.print();
+	}
+
 }

@@ -1,20 +1,44 @@
-import java.util.ArrayList;
+public class Declarations implements Production {
 
-public class Declarations {
+	Production id;
+	Production declaration;
+
+	String symbol;
+
+	public Declarations() {
+		id = new Id();
+		declaration = new Declarations();
+	}
 
 	public static boolean isDeclaration(int token) {
 		return token == 4; // int
 	}
 
-	public static void parse(Tokens symbols) {
-		Reporter.Assert(symbols.hasCurrent() && isDeclaration(symbols.getToken()), "int");
+	public void parse(Tokens symbols) {
+		Reporter.Assert(
+				symbols.hasCurrent() && isDeclaration(symbols.getToken()),
+				"int");
 		symbols.skip();
 
-		Id.parse(symbols);
+		id.parse(symbols);
 
-		Colon.parse(symbols);
+		// TODO : recursive
 
 		if (isDeclaration(symbols.getToken()))
-			Declarations.parse(symbols);
+			declaration.parse(symbols);
+
+		SemiColon.parse(symbols);
 	}
+
+	public void execute() {
+
+	}
+
+	public void print() {
+		System.out.print("int ");
+		id.print();
+		declaration.print();
+		System.out.println(";");
+	}
+
 }

@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-
-public class Op {
+public class Op implements Production {
 
 	public static boolean isOp(int token) {
 		boolean result = false;
@@ -12,7 +10,7 @@ public class Op {
 		return result;
 	}
 
-	public static void parse(Tokens tokens) {
+	public void parse(Tokens tokens) {
 		Reporter.Assert(tokens.hasCurrent() && isOp(tokens.getToken()), "Op");
 
 		int alternative = tokens.getToken();
@@ -23,9 +21,18 @@ public class Op {
 			Id.parse(tokens);
 		} else if (alternative == 20) { // (
 			Expression.parse(tokens);
-			Reporter.Assert (tokens.getToken()==21, ")"); // )
+			Reporter.Assert(tokens.getToken() == 21, ")"); // )
 			tokens.skip();
 		} else
-			Reporter.Assert (false,"Op");
+			Reporter.Assert(false, "Op");
 	}
+
+	public void execute() {
+
+	}
+
+	public void print() {
+
+	}
+
 }

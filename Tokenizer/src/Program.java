@@ -1,15 +1,16 @@
-import java.util.ArrayList;
-
-public class Program {
+public class Program implements Production {
 
 	public final String[] RESERVED = { "program", "begin", "end", "if", "int",
 			"if", "then", "else", "while", "loop", "read", "write" };
+
+	Production declarations;
+	Production statement;
 
 	public static boolean isProgram(int token) {
 		return token == 1;
 	}
 
-	public static void parse(Tokens symbols) {
+	public void parse(Tokens symbols) {
 		Reporter.Assert(symbols.hasCurrent() && isProgram(symbols.getToken()),
 				"program");
 		symbols.skip();
@@ -20,15 +21,22 @@ public class Program {
 
 		Statement.parse(symbols);
 
-        End.parse(symbols);
+		End.parse(symbols);
 
 		Reporter.Assert(!symbols.hasCurrent(), "end of file");
 	}
 
-	private static void parseBegin(Tokens tokens) {
-		Reporter.Assert(tokens.hasCurrent() && tokens.getToken()==2,
-				"begin");
+	private void parseBegin(Tokens tokens) {
+		Reporter.Assert(tokens.hasCurrent() && tokens.getToken() == 2, "begin");
 		tokens.skip();
+	}
+
+	public void execute() {
+
+	}
+
+	public void print() {
+
 	}
 
 }

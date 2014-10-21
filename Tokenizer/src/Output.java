@@ -1,16 +1,24 @@
-import java.util.ArrayList;
-
-public class Output {
+public class Output implements Production {
 
 	public static boolean isOutput(int token) {
-		return token==11;
+		return token == 11;
 	}
 
-	public static void parse(Tokens symbols) {
-		Reporter.Assert(symbols.hasCurrent() && isOutput(symbols.getToken()), "Output");
+	public void parse(Tokens symbols) {
+		Reporter.Assert(symbols.hasCurrent() && isOutput(symbols.getToken()),
+				"Output");
 		symbols.skip();
 
 		Id.parse(symbols);
-		Colon.parse(symbols);
+		SemiColon.parse(symbols);
 	}
+
+	public void execute() {
+
+	}
+
+	public void print() {
+
+	}
+
 }

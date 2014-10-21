@@ -1,17 +1,38 @@
-import java.util.ArrayList;
+public class Factor implements Production {
 
-public class Factor {
+	Production op;
+	Production factor;
+
+	boolean recursive;
+
+	public Factor() {
+		op = new Op();
+		factor = new Factor();
+		recursive = false;
+	}
 
 	public static boolean isFactor(int token) {
 		return Op.isOp(token); // Factor = { Op | Op * Factor }
 	}
 
-	public static void parse(Tokens tokens) {
-		Reporter.Assert(tokens.hasCurrent() && isFactor(tokens.getToken()), "Factor");
-		Op.parse(tokens);
+	public void parse(Tokens tokens) {
+		Reporter.Assert(tokens.hasCurrent() && isFactor(tokens.getToken()),
+				"Factor");
+		op.parse(tokens);
 
 		if (tokens.hasCurrent() && tokens.equals("*")) {
-			Factor.parse(tokens);
+			recursive = true;
+			factor.parse(tokens);
 		}
+	}
+
+	public void execute() {
+
+	}
+
+	public void print() {
+		op.print();
+		if (recursive)
+			factor.print();
 	}
 }
