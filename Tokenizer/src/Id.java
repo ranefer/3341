@@ -14,10 +14,6 @@ public class Id implements Production {
 		Reporter.Assert(symbols.hasCurrent() && isId(symbols.getToken()), "Id");
 		symbols.skip();
 
-		if (symbols.hasCurrent() && Comma.isComma(symbols.getToken())) {
-			Comma.parse(symbols);
-			id.parse(symbols);
-		}
 	}
 
 	public void execute() {
@@ -25,6 +21,7 @@ public class Id implements Production {
 	}
 
 	public void print() {
-		ip.parse;
+		id.print();
+		Comma.print();
 	}
 }

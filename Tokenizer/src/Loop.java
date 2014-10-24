@@ -12,13 +12,13 @@ public class Loop implements Production {
 				"while");
 		tokens.skip();
 
-		Condition.parse(tokens);
+		condition.parse(tokens);
 
 		Reporter.Assert(tokens.hasCurrent() && Loop.isLoop(tokens.getToken()),
 				"loop");
 		tokens.skip();
 
-		Statement.parse(tokens);
+		statement.parse(tokens);
 		End.parse(tokens);
 		SemiColon.parse(tokens);
 	}
@@ -28,7 +28,11 @@ public class Loop implements Production {
 	}
 
 	public void print() {
-
+		System.out.print("while ");
+		condition.print();
+		System.out.println(" loop ");
+		statement.print();
+		End.print();
 	}
 
 }

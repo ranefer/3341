@@ -27,6 +27,12 @@ public class Declarations implements Production {
 		if (isDeclaration(symbols.getToken()))
 			declaration.parse(symbols);
 
+		/*
+		 * TODO: account for commas if (symbols.hasCurrent() &&
+		 * Comma.isComma(symbols.getToken())) { Comma.parse(symbols);
+		 * id.parse(symbols); }
+		 */
+
 		SemiColon.parse(symbols);
 	}
 

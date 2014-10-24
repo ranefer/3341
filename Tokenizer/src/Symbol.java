@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Symbol implements Production {
+public class Symbol {
 
 	ArrayList<String> symbols;
 	private int index;
@@ -22,6 +22,10 @@ public class Symbol implements Production {
 
 	public boolean hasCurrent() {
 		return index < this.symbols.size() - 1;
+	}
+
+	public void reset() {
+		this.index = 0;
 	}
 
 	private String doubleCheckNext(String symbol) {

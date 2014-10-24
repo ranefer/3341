@@ -28,6 +28,10 @@ public class Tokens {
 		return symbols.hasCurrent();
 	}
 
+	public void reset() {
+		symbols.reset();
+	}
+
 	public void skip() {
 		symbols.skip();
 	}

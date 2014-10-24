@@ -1,6 +1,10 @@
 public class Statement implements Production {
 
 	Production body;
+	Production statement;
+
+	public Statement() {
+	}
 
 	public static boolean isStatement(int token) {
 		boolean result = false;
@@ -15,21 +19,28 @@ public class Statement implements Production {
 	public void parse(Tokens tokens) {
 		Reporter.Assert(tokens.hasCurrent() && isStatement(tokens.getToken()),
 				"Statement");
-		if (Assign.isAssign(tokens.getToken()))
-			Assign.parse(tokens);
-		else if (If.isIf(tokens.getToken()))
-			If.parse(tokens);
-		else if (Loop.isLoop(tokens.getToken()))
-			Loop.parse(tokens);
-		else if (Input.isInput(tokens.getToken()))
-			Input.parse(tokens);
-		else if (Output.isOutput(tokens.getToken()))
-			Output.parse(tokens);
-		else
+		if (Assign.isAssign(tokens.getToken())) {
+			body = new Assign();
+			body.parse(tokens);
+		} else if (If.isIf(tokens.getToken())) {
+			body = new If();
+			body.parse(tokens);
+		} else if (Loop.isLoop(tokens.getToken())) {
+			body = new Loop();
+			body.parse(tokens);
+		} else if (Input.isInput(tokens.getToken())) {
+			body = new Input();
+			body.parse(tokens);
+		} else if (Output.isOutput(tokens.getToken())) {
+			body = new Output();
+			body.parse(tokens);
+		} else
 			Reporter.Assert(tokens.hasCurrent() && false, "Statement");
 
-		if (tokens.hasCurrent() && isStatement(tokens.getToken()))
-			Statement.parse(tokens);
+		if (tokens.hasCurrent() && isStatement(tokens.getToken())) {
+			statement = new Statement();
+			statement.parse(tokens);
+		}
 	}
 
 	public void execute() {

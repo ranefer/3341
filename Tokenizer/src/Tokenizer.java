@@ -44,5 +44,8 @@ public class Tokenizer {
 			System.out.print(tokens.getToken() + " ");
 			tokens.skip();
 		}
+		tokens.reset();
+		Program p = new Program();
+		p.parse(tokens);
 	}
 }

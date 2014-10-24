@@ -4,7 +4,7 @@ public class End implements Terminal {
 		return token == 3;
 	}
 
-	public void print() {
+	public static void print() {
 		System.out.println("end");
 	}
 

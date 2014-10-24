@@ -1,5 +1,11 @@
 public class Output implements Production {
 
+	Production id;
+
+	public Output() {
+		id = new Id();
+	}
+
 	public static boolean isOutput(int token) {
 		return token == 11;
 	}
@@ -9,7 +15,7 @@ public class Output implements Production {
 				"Output");
 		symbols.skip();
 
-		Id.parse(symbols);
+		id.parse(symbols);
 		SemiColon.parse(symbols);
 	}
 

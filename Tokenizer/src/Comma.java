@@ -1,20 +1,16 @@
-public class Comma implements Production {
+public class Comma implements Terminal {
 
 	public static boolean isComma(int token) {
 		return token == 13;
 	}
 
-	public void parse(Tokens symbols) {
+	public static void parse(Tokens symbols) {
 		Reporter.Assert(symbols.hasCurrent() && isComma(symbols.getToken()),
 				";");
 		symbols.skip();
 	}
 
-	public void execute() {
-
-	}
-
-	public void print() {
+	public static void print() {
 
 	}
 

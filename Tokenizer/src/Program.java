@@ -6,6 +6,11 @@ public class Program implements Production {
 	Production declarations;
 	Production statement;
 
+	public Program() {
+		declarations = new Declarations();
+		statement = new Statement();
+	}
+
 	public static boolean isProgram(int token) {
 		return token == 1;
 	}
@@ -15,11 +20,11 @@ public class Program implements Production {
 				"program");
 		symbols.skip();
 
-		Declarations.parse(symbols);
+		declarations.parse(symbols);
 
 		parseBegin(symbols);
 
-		Statement.parse(symbols);
+		statement.parse(symbols);
 
 		End.parse(symbols);
 

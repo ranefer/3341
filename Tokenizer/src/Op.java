@@ -1,4 +1,10 @@
 public class Op implements Production {
+	Production body;
+	boolean hasParen;
+
+	public Op() {
+		hasParen = false;
+	}
 
 	public static boolean isOp(int token) {
 		boolean result = false;
@@ -18,9 +24,11 @@ public class Op implements Production {
 		if (IntegerValue.isOp(alternative)) {
 			tokens.skip();
 		} else if (Id.isId(alternative)) {
-			Id.parse(tokens);
+			body = new Id();
+			body.parse(tokens);
 		} else if (alternative == 20) { // (
-			Expression.parse(tokens);
+			body = new Expression();
+			body.parse(tokens);
 			Reporter.Assert(tokens.getToken() == 21, ")"); // )
 			tokens.skip();
 		} else
@@ -28,11 +36,14 @@ public class Op implements Production {
 	}
 
 	public void execute() {
-
 	}
 
 	public void print() {
-
+		if (hasParen) {
+			System.out.println("(");
+			body.print();
+			System.out.println(")");
+		} else
+			body.print();
 	}
-
 }
