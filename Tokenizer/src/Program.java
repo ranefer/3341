@@ -41,7 +41,11 @@ public class Program implements Production {
 	}
 
 	public void print() {
-
+		System.out.println("program");
+		declarations.print();
+		System.out.println("begin");
+		statement.print();
+		End.print();
 	}
 
 }

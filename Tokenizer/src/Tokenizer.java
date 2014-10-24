@@ -38,14 +38,16 @@ public class Tokenizer {
 				}
 			}
 		}
-		Tokens tokens = new Tokens(new Symbol(ARGS));
-
-		while (tokens.hasCurrent()) {
-			System.out.print(tokens.getToken() + " ");
-			tokens.skip();
-		}
-		tokens.reset();
+		Symbol symbols = new Symbol(ARGS);
+		Tokens tokens = new Tokens(symbols);
 		Program p = new Program();
+		Reporter.setSymbols(symbols);
+		/*
+		 * while (tokens.hasCurrent()) { System.out.print(tokens.getToken() +
+		 * " "); tokens.skip(); }
+		 */
+		tokens.reset();
 		p.parse(tokens);
+		p.print();
 	}
 }

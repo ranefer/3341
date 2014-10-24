@@ -2,6 +2,10 @@ public class Input implements Production {
 
 	Production id;
 
+	public Input() {
+		id = new Id();
+	}
+
 	public static boolean isInput(int token) {
 		return token == 10;
 	}
@@ -21,7 +25,7 @@ public class Input implements Production {
 	}
 
 	public void print() {
-		System.out.println("read");
+		System.out.print("read ");
 		id.print();
 		SemiColon.print();
 	}

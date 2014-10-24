@@ -1,5 +1,5 @@
 public class Reporter {
-	private static Tokens symbols;
+	private static Symbol symbols;
 
 	public static void Assert(boolean b, String symbol) {
 		if (b)
@@ -8,7 +8,7 @@ public class Reporter {
 		System.out.println();
 		System.out.print("Expected '" + symbol + "'");
 		if (symbols != null && symbols.hasCurrent())
-			System.out.print(" but was " + symbols.getToken());
+			System.out.print(" but was " + symbols.getSymbol());
 		System.out.println();
 
 		System.exit(10);
@@ -17,7 +17,7 @@ public class Reporter {
 	public static void Report() {
 	}
 
-	public static void setTokenss(Tokens symbols) {
+	public static void setSymbols(Symbol symbols) {
 		Reporter.symbols = symbols;
 	}
 

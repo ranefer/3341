@@ -35,7 +35,7 @@ public class Assign implements Production {
 		id.print();
 		System.out.print(" = ");
 		expr.print();
-		System.out.print(";");
+		System.out.println(";");
 	}
 
 	private void parseEqualSign(Tokens tokens) {

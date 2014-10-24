@@ -40,10 +40,10 @@ public class Op implements Production {
 
 	public void print() {
 		if (hasParen) {
-			System.out.println("(");
+			System.out.print("(");
 			body.print();
-			System.out.println(")");
-		} else
+			System.out.print(")");
+		} else if (body != null)
 			body.print();
 	}
 }

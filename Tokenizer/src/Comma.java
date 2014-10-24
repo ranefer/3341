@@ -11,7 +11,7 @@ public class Comma implements Terminal {
 	}
 
 	public static void print() {
-
+		System.out.print(", ");
 	}
 
 }

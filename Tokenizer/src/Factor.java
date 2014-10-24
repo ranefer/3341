@@ -3,12 +3,8 @@ public class Factor implements Production {
 	Production op;
 	Production factor;
 
-	boolean recursive;
-
 	public Factor() {
 		op = new Op();
-		factor = new Factor();
-		recursive = false;
 	}
 
 	public static boolean isFactor(int token) {
@@ -21,7 +17,7 @@ public class Factor implements Production {
 		op.parse(tokens);
 
 		if (tokens.hasCurrent() && tokens.equals("*")) {
-			recursive = true;
+			factor = new Factor();
 			factor.parse(tokens);
 		}
 	}
@@ -32,7 +28,7 @@ public class Factor implements Production {
 
 	public void print() {
 		op.print();
-		if (recursive)
+		if (factor != null)
 			factor.print();
 	}
 }

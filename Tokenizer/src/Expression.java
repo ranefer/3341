@@ -5,7 +5,6 @@ public class Expression implements Production {
 
 	public Expression() {
 		factor = new Factor();
-		expression = new Expression();
 	}
 
 	public static boolean isExpression(int token) {
@@ -13,6 +12,7 @@ public class Expression implements Production {
 	}
 
 	public void parse(Tokens tokens) {
+		expression = new Expression();
 		Reporter.Assert(tokens.hasCurrent() && isExpression(tokens.getToken()),
 				"Expression");
 
@@ -30,7 +30,9 @@ public class Expression implements Production {
 	}
 
 	public void print() {
-
+		factor.print();
+		if (expression != null)
+			expression.print();
 	}
 
 }

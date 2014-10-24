@@ -4,36 +4,34 @@ public class Declarations implements Production {
 	Production declaration;
 
 	String symbol;
+	boolean topLevelDeclaration = false;
 
 	public Declarations() {
 		id = new Id();
-		declaration = new Declarations();
 	}
 
 	public static boolean isDeclaration(int token) {
-		return token == 4; // int
+		return token == 4 || Comma.isComma(token); // int ,
 	}
 
-	public void parse(Tokens symbols) {
+	public void parse(Tokens tokens) {
+		declaration = new Declarations();
+		topLevelDeclaration = true;
 		Reporter.Assert(
-				symbols.hasCurrent() && isDeclaration(symbols.getToken()),
-				"int");
-		symbols.skip();
+				tokens.hasCurrent() && isDeclaration(tokens.getToken()),
+				"int or ','");
+		if (Comma.isComma(tokens.getToken()))
+			topLevelDeclaration = false;
 
-		id.parse(symbols);
+		tokens.skip();
 
-		// TODO : recursive
+		id.parse(tokens);
 
-		if (isDeclaration(symbols.getToken()))
-			declaration.parse(symbols);
+		if (isDeclaration(tokens.getToken()))
+			declaration.parse(tokens);
 
-		/*
-		 * TODO: account for commas if (symbols.hasCurrent() &&
-		 * Comma.isComma(symbols.getToken())) { Comma.parse(symbols);
-		 * id.parse(symbols); }
-		 */
-
-		SemiColon.parse(symbols);
+		if (topLevelDeclaration)
+			SemiColon.parse(tokens);
 	}
 
 	public void execute() {
@@ -41,10 +39,16 @@ public class Declarations implements Production {
 	}
 
 	public void print() {
-		System.out.print("int ");
-		id.print();
-		declaration.print();
-		System.out.println(";");
-	}
+		if (topLevelDeclaration) {
+			System.out.print("int ");
+			id.print();
+			declaration.print();
+			System.out.println(";");
 
+		} else if (declaration != null) {
+			Comma.print();
+			id.print();
+			declaration.print();
+		}
+	}
 }

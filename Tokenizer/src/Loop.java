@@ -3,8 +3,13 @@ public class Loop implements Production {
 	Production condition;
 	Production statement;
 
+	public Loop() {
+		condition = new Condition();
+		statement = new Statement();
+	}
+
 	public static boolean isLoop(int token) {
-		return token == 9;
+		return token == 8 || token == 9;
 	}
 
 	public void parse(Tokens tokens) {

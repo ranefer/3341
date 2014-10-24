@@ -48,7 +48,9 @@ public class Statement implements Production {
 	}
 
 	public void print() {
-
+		body.print();
+		if (statement != null)
+			statement.print();
 	}
 
 }

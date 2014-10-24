@@ -1,19 +1,19 @@
 public class Id implements Production {
 
-	Production id;
+	String id;
 
 	public Id() {
-
+		id = "";
 	}
 
 	public static boolean isId(int token) {
 		return token == 32;
 	}
 
-	public void parse(Tokens symbols) {
-		Reporter.Assert(symbols.hasCurrent() && isId(symbols.getToken()), "Id");
-		symbols.skip();
-
+	public void parse(Tokens tokens) {
+		Reporter.Assert(tokens.hasCurrent() && isId(tokens.getToken()), "Id");
+		id = String.valueOf(tokens.getToken());
+		tokens.skip();
 	}
 
 	public void execute() {
@@ -21,7 +21,6 @@ public class Id implements Production {
 	}
 
 	public void print() {
-		id.print();
-		Comma.print();
+		System.out.print(id);
 	}
 }

@@ -4,8 +4,14 @@ public class Comparison implements Production {
 
 	String compareOperator;
 
+	public Comparison() {
+		op1 = new Op();
+		op2 = new Op();
+	}
+
 	public static boolean isComparison(int token) {
 		return token == 20; // (
+
 	}
 
 	public void parse(Tokens symbols) {
@@ -64,14 +70,13 @@ public class Comparison implements Production {
 	}
 
 	public void execute() {
-		System.out.println("(");
-		op1.print();
-		System.out.println(compareOperator);
-		op2.print();
-		System.out.println(")");
 	}
 
 	public void print() {
-
+		System.out.print("(");
+		op1.print();
+		System.out.print(compareOperator);
+		op2.print();
+		System.out.print(")");
 	}
 }

@@ -7,6 +7,7 @@ public class Condition implements Production {
 
 	public Condition() {
 		extraSymbols = new char[3];
+		p = new Comparison();
 	}
 
 	public static boolean isCondition(int token) {
@@ -24,7 +25,6 @@ public class Condition implements Production {
 		int alternative = tokens.getToken();
 
 		if (Comparison.isComparison(alternative)) {
-			p = new Comparison();
 			p.parse(tokens);
 		} else if (alternative == 15) {
 			parseExclamationPoint(tokens);
@@ -33,6 +33,7 @@ public class Condition implements Production {
 			parseOpenBracket(tokens);
 			p.parse(tokens);
 			parseTokens(tokens);
+			p2 = new Comparison();
 			p2.parse(tokens);
 			parseClosedBracket(tokens);
 		}
@@ -73,12 +74,12 @@ public class Condition implements Production {
 
 	public void print() {
 		if (p2 != null) {
-			System.out.println(extraSymbols[0]);
+			System.out.print(extraSymbols[0]);
 			p.print();
-			System.out.println(extraSymbols[1]);
-			System.out.println(extraSymbols[1]);
+			System.out.print(extraSymbols[1]);
+			System.out.print(extraSymbols[1]);
 			p2.print();
-			System.out.println(extraSymbols[2]);
+			System.out.print(extraSymbols[2]);
 		} else
 			p.print();
 	}
