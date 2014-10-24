@@ -42,6 +42,7 @@ public class Statement implements Production {
 	}
 
 	public void print(int tabStop) {
+		Tab.print(tabStop);
 		body.print(tabStop);
 	}
 

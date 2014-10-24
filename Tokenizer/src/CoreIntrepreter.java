@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Tokenizer {
+public class CoreIntrepreter {
 
 	public static void main(String... args) {
 		ArrayList<String> redirectedArgs = new ArrayList<String>();
@@ -22,6 +22,10 @@ public class Tokenizer {
 			args[i] = args[i].replaceAll("[\\)]", " ) ");
 			args[i] = args[i].replaceAll("[\\[]", " [ ");
 			args[i] = args[i].replaceAll("[\\]]", " ] ");
+
+			args[i] = args[i].replaceAll("[\\*]", " * ");
+			args[i] = args[i].replaceAll("[\\-]", " - ");
+			args[i] = args[i].replaceAll("[\\+]", " + ");
 
 			args[i] = args[i].replaceAll(";", " ; ");
 			args[i] = args[i].replaceAll(",", " , ");

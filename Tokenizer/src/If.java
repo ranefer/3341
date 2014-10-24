@@ -6,7 +6,7 @@ public class If implements Production {
 
 	public If() {
 		condition = new Condition();
-		ifStatement = new Statement();
+		ifStatement = new StatementSequence();
 	}
 
 	public static boolean isIf(int token) {
@@ -49,11 +49,15 @@ public class If implements Production {
 	public void print(int tabStop) {
 		System.out.print("if ");
 		condition.print(tabStop);
+		System.out.println();
 
 		ifStatement.print(tabStop + Tab.space);
 		if (elseStatement != null) { 
+            Tab.print(tabStop);
 			System.out.println("else ");
 			elseStatement.print(tabStop + Tab.space);
 		}
+		End.print(tabStop);
+		SemiColon.print();
 	}
 }

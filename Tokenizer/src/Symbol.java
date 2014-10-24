@@ -21,7 +21,7 @@ public class Symbol {
 	}
 
 	public void skip() {
-		// System.out.println(getSymbol());
+		//System.out.println(getSymbol());
 		index++;
 	}
 

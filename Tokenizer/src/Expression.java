@@ -13,17 +13,18 @@ public class Expression implements Production {
 	}
 
 	public void parse(Tokens tokens) {
-		expression = new Expression();
 		Reporter.Assert(tokens.hasCurrent() && isExpression(tokens.getToken()),
 				"Expression");
 
 		factor.parse(tokens);
 
 		if (tokens.hasCurrent() && tokens.getToken() == 22) {
+                expression = new Expression();
 			symbol = "+";
 			tokens.skip();
 			expression.parse(tokens);
 		} else if (tokens.hasCurrent() && tokens.getToken() == 23) {
+                expression = new Expression();
 			symbol = "-";
 			tokens.skip();
 			expression.parse(tokens);
@@ -36,8 +37,10 @@ public class Expression implements Production {
 
 	public void print(int tabStop) {
 		factor.print(tabStop);
-		if (expression != null)
+		if (expression != null){ 
+			System.out.print(" " + symbol + " ");
 			expression.print(tabStop);
+		}
 	}
 
 }

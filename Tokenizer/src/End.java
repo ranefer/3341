@@ -4,8 +4,9 @@ public class End implements Terminal {
 		return token == 3;
 	}
 
-	public static void print() {
-		System.out.println("end");
+	public static void print(int tabStop) {
+		Tab.print(tabStop);
+		System.out.print("end");
 	}
 
 	public static void parse(Tokens tokens) {

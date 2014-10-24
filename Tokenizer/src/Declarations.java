@@ -27,8 +27,12 @@ public class Declarations implements Production {
 	}
 
 	public void print(int tabStop) {
+
+            Tab.print(tabStop);
 			System.out.print("int ");
 			idList.print(tabStop);
+            
+            Tab.print(tabStop);
 			SemiColon.print();
 	}
 }

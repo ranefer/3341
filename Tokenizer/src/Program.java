@@ -3,11 +3,11 @@ public class Program implements Production {
 	public final String[] RESERVED = { "program", "begin", "end", "if", "int",
 			"if", "then", "else", "while", "loop", "read", "write" };
 
-	Production declarations;
+	Production declarationSequence;
 	Production statementSequence;
 
 	public Program() {
-		declarations = new Declarations();
+		declarationSequence = new DeclarationSequence();
 		statementSequence = new StatementSequence();
 	}
 
@@ -20,7 +20,7 @@ public class Program implements Production {
 				"program");
 		symbols.skip();
 
-		declarations.parse(symbols);
+		declarationSequence.parse(symbols);
 
 		parseBegin(symbols);
 
@@ -42,10 +42,10 @@ public class Program implements Production {
 
 	public void print(int tabStop) {
 		System.out.println("program");
-		declarations.print(tabStop);
+		declarationSequence.print(tabStop);
 		System.out.println("begin");
 		statementSequence.print(tabStop);
-		End.print();
+		End.print(0);
 	}
 
 }

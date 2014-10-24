@@ -5,7 +5,7 @@ public class Loop implements Production {
 
 	public Loop() {
 		condition = new Condition();
-		statement = new Statement();
+		statement = new StatementSequence();
 	}
 
 	public static boolean isLoop(int token) {
@@ -37,7 +37,8 @@ public class Loop implements Production {
 		condition.print(tabStop);
 		System.out.println(" loop ");
 		statement.print(tabStop + Tab.space);
-		End.print();
+		End.print(tabStop);
+		SemiColon.print();
 	}
 
 }
