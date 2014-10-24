@@ -20,11 +20,13 @@ public class Output implements Production {
 	}
 
 	public void execute() {
-
+		id.execute();
 	}
 
 	public void print(int tabStop) {
-
+		System.out.print("write ");
+		id.print(tabStop);
+		SemiColon.print();
 	}
 
 }

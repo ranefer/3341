@@ -13,6 +13,10 @@ public class Symbol {
 
 	public String getSymbol() throws IndexOutOfBoundsException {
 		String symbol = symbols.get(index);
+        symbol = symbol.replaceAll("[A-Z]+[0-9]*",
+                "_IDENTIFIER");
+        symbol = symbol.replaceAll("[0-9]+", "_INTEGER");
+	
 		return doubleCheckNext(symbol);
 	}
 
@@ -67,13 +71,8 @@ public class Symbol {
 			return symbol;
 		}
 	}
-
-	public void execute() {
-
-	}
-
-	public void print() {
-
+	public String getSourceSymbol() {
+		return this.symbols.get(index);
 	}
 
 }

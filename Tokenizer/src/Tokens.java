@@ -71,4 +71,7 @@ public class Tokens {
 		tokenizer.put("_IDENTIFIER", 32);
 		tokenizer.put("_EOF", 33);
 	}
+	public String getSymbol() {
+		return this.symbols.getSourceSymbol();
+	}
 }

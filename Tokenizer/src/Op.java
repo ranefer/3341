@@ -21,8 +21,9 @@ public class Op implements Production {
 
 		int alternative = tokens.getToken();
 
-		if (IntegerValue.isOp(alternative)) {
-			tokens.skip();
+		if (IntegerValue.isInt(alternative)) {
+			body = new IntegerValue();
+			body.parse(tokens);
 		} else if (Id.isId(alternative)) {
 			body = new Id();
 			body.parse(tokens);
@@ -30,7 +31,6 @@ public class Op implements Production {
 			body = new Expression();
 			body.parse(tokens);
 			Reporter.Assert(tokens.getToken() == 21, ")"); // )
-			tokens.skip();
 		} else
 			Reporter.Assert(false, "Op");
 	}

@@ -1,6 +1,7 @@
 public class Expression implements Production {
 
 	Production factor;
+	String symbol;
 	Production expression;
 
 	public Expression() {
@@ -19,8 +20,12 @@ public class Expression implements Production {
 		factor.parse(tokens);
 
 		if (tokens.hasCurrent() && tokens.getToken() == 22) {
+			symbol = "+";
+			tokens.skip();
 			expression.parse(tokens);
 		} else if (tokens.hasCurrent() && tokens.getToken() == 23) {
+			symbol = "-";
+			tokens.skip();
 			expression.parse(tokens);
 		}
 	}

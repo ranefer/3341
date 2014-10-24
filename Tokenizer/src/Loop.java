@@ -36,7 +36,7 @@ public class Loop implements Production {
 		System.out.print("while ");
 		condition.print(tabStop);
 		System.out.println(" loop ");
-		statement.print(tabStop);
+		statement.print(tabStop + Tab.space);
 		End.print();
 	}
 

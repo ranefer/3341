@@ -15,16 +15,15 @@ public class Assign implements Production {
 	public void parse(Tokens tokens) {
 		Reporter.Assert(tokens.hasCurrent() && isAssign(tokens.getToken()),
 				"Id");
+		String sym = tokens.getSymbol();
+		Reporter.Assert(Id.isDeclared(tokens.getSymbol()), "declared identifier");
 		id.parse(tokens);
 
 		parseEqualSign(tokens);
 
 		expr.parse(tokens);
 
-		Reporter.Assert(
-				tokens.hasCurrent() && SemiColon.isSemiColon(tokens.getToken()),
-				";");
-		tokens.skip();
+		SemiColon.parse(tokens);
 	}
 
 	public void execute() {

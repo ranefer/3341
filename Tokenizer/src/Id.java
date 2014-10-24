@@ -1,9 +1,14 @@
+import java.util.Hashtable;
+
 public class Id implements Production {
 
-	String id;
-
+	String name;
+	
+	private static Hashtable<String, Set<Integer, Boolean, Boolean>> variables = new Hashtable<String, Set<Integer, Boolean, Boolean>>();
+	
+	boolean isDeclared = false;
+	
 	public Id() {
-		id = "";
 	}
 
 	public static boolean isId(int token) {
@@ -12,15 +17,31 @@ public class Id implements Production {
 
 	public void parse(Tokens tokens) {
 		Reporter.Assert(tokens.hasCurrent() && isId(tokens.getToken()), "Id");
-		id = String.valueOf(tokens.getToken());
+
+		String key = tokens.getSymbol();
+		name = key;
+		Set value = new Set(0,isDeclared,false);
+
+		variables.put(key, value);
 		tokens.skip();
 	}
 
 	public void execute() {
-
+		System.out.println(name + " =  " + variables.get(name).first);
 	}
 
 	public void print(int tabStop) {
-		System.out.print(id);
+		System.out.print(name);
+	}
+	
+	public int getValue() {
+		return variables.get(name).first;
+	}
+	public void setValue(int value) {
+		variables.get(name).first = value;
+	}
+	
+	public static boolean isDeclared(String name){
+		return variables.containsKey(name);
 	}
 }
