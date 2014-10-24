@@ -1,7 +1,6 @@
 public class Statement implements Production {
 
 	Production body;
-	Production statement;
 
 	public Statement() {
 	}
@@ -36,21 +35,14 @@ public class Statement implements Production {
 			body.parse(tokens);
 		} else
 			Reporter.Assert(tokens.hasCurrent() && false, "Statement");
-
-		if (tokens.hasCurrent() && isStatement(tokens.getToken())) {
-			statement = new Statement();
-			statement.parse(tokens);
-		}
 	}
 
 	public void execute() {
 
 	}
 
-	public void print() {
-		body.print();
-		if (statement != null)
-			statement.print();
+	public void print(int tabStop) {
+		body.print(tabStop);
 	}
 
 }

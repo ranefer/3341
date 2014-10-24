@@ -15,7 +15,7 @@ public class IntegerValue implements Production {
 	}
 
 	@Override
-	public void print() {
+	public void print(int tabStop) {
 
 	}
 

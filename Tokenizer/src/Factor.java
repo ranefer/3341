@@ -26,9 +26,9 @@ public class Factor implements Production {
 
 	}
 
-	public void print() {
-		op.print();
+	public void print(int tabStop) {
+		op.print(tabStop);
 		if (factor != null)
-			factor.print();
+			factor.print(tabStop);
 	}
 }

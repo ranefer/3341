@@ -3,5 +3,5 @@ public interface Production {
 
 	public void execute();
 
-	public void print();
+	public void print(int tabStop);
 }

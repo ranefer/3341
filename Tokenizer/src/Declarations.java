@@ -38,17 +38,17 @@ public class Declarations implements Production {
 
 	}
 
-	public void print() {
+	public void print(int tabStop) {
 		if (topLevelDeclaration) {
 			System.out.print("int ");
-			id.print();
-			declaration.print();
+			id.print(tabStop);
+			declaration.print(tabStop);
 			System.out.println(";");
 
 		} else if (declaration != null) {
 			Comma.print();
-			id.print();
-			declaration.print();
+			id.print(tabStop);
+			declaration.print(tabStop);
 		}
 	}
 }

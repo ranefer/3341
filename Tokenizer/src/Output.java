@@ -23,7 +23,7 @@ public class Output implements Production {
 
 	}
 
-	public void print() {
+	public void print(int tabStop) {
 
 	}
 

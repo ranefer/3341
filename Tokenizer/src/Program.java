@@ -4,11 +4,11 @@ public class Program implements Production {
 			"if", "then", "else", "while", "loop", "read", "write" };
 
 	Production declarations;
-	Production statement;
+	Production statementSequence;
 
 	public Program() {
 		declarations = new Declarations();
-		statement = new Statement();
+		statementSequence = new StatementSequence();
 	}
 
 	public static boolean isProgram(int token) {
@@ -24,7 +24,7 @@ public class Program implements Production {
 
 		parseBegin(symbols);
 
-		statement.parse(symbols);
+		statementSequence.parse(symbols);
 
 		End.parse(symbols);
 
@@ -40,11 +40,11 @@ public class Program implements Production {
 
 	}
 
-	public void print() {
+	public void print(int tabStop) {
 		System.out.println("program");
-		declarations.print();
+		declarations.print(tabStop);
 		System.out.println("begin");
-		statement.print();
+		statementSequence.print(tabStop);
 		End.print();
 	}
 

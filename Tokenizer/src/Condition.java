@@ -72,15 +72,15 @@ public class Condition implements Production {
 
 	}
 
-	public void print() {
+	public void print(int tabStop) {
 		if (p2 != null) {
 			System.out.print(extraSymbols[0]);
-			p.print();
+			p.print(tabStop);
 			System.out.print(extraSymbols[1]);
 			System.out.print(extraSymbols[1]);
-			p2.print();
+			p2.print(tabStop);
 			System.out.print(extraSymbols[2]);
 		} else
-			p.print();
+			p.print(tabStop);
 	}
 }

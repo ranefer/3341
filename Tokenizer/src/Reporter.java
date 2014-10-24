@@ -20,13 +20,4 @@ public class Reporter {
 	public static void setSymbols(Symbol symbols) {
 		Reporter.symbols = symbols;
 	}
-
-	public void execute() {
-
-	}
-
-	public void print() {
-
-	}
-
 }

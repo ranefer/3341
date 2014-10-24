@@ -72,11 +72,11 @@ public class Comparison implements Production {
 	public void execute() {
 	}
 
-	public void print() {
+	public void print(int tabStop) {
 		System.out.print("(");
-		op1.print();
+		op1.print(tabStop);
 		System.out.print(compareOperator);
-		op2.print();
+		op2.print(tabStop);
 		System.out.print(")");
 	}
 }

@@ -20,7 +20,7 @@ public class Id implements Production {
 
 	}
 
-	public void print() {
+	public void print(int tabStop) {
 		System.out.print(id);
 	}
 }

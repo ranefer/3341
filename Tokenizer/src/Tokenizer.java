@@ -48,6 +48,6 @@ public class Tokenizer {
 		 */
 		tokens.reset();
 		p.parse(tokens);
-		p.print();
+		p.print(0);
 	}
 }

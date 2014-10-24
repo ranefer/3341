@@ -32,11 +32,11 @@ public class Loop implements Production {
 
 	}
 
-	public void print() {
+	public void print(int tabStop) {
 		System.out.print("while ");
-		condition.print();
+		condition.print(tabStop);
 		System.out.println(" loop ");
-		statement.print();
+		statement.print(tabStop);
 		End.print();
 	}
 

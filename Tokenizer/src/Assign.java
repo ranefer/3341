@@ -31,10 +31,10 @@ public class Assign implements Production {
 
 	}
 
-	public void print() {
-		id.print();
+	public void print(int tabStop) {
+		id.print(tabStop);
 		System.out.print(" = ");
-		expr.print();
+		expr.print(tabStop);
 		System.out.println(";");
 	}
 

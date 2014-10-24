@@ -38,12 +38,12 @@ public class Op implements Production {
 	public void execute() {
 	}
 
-	public void print() {
+	public void print(int tabStop) {
 		if (hasParen) {
 			System.out.print("(");
-			body.print();
+			body.print(tabStop);
 			System.out.print(")");
 		} else if (body != null)
-			body.print();
+			body.print(tabStop);
 	}
 }

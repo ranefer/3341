@@ -24,9 +24,9 @@ public class Input implements Production {
 
 	}
 
-	public void print() {
+	public void print(int tabStop) {
 		System.out.print("read ");
-		id.print();
+		id.print(tabStop);
 		SemiColon.print();
 	}
 

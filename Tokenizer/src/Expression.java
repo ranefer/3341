@@ -29,10 +29,10 @@ public class Expression implements Production {
 
 	}
 
-	public void print() {
-		factor.print();
+	public void print(int tabStop) {
+		factor.print(tabStop);
 		if (expression != null)
-			expression.print();
+			expression.print(tabStop);
 	}
 
 }

@@ -46,10 +46,10 @@ public class If implements Production {
 
 	}
 
-	public void print() {
-		condition.print();
-		ifStatement.print();
+	public void print(int tabStop) {
+		condition.print(tabStop);
+		ifStatement.print(tabStop);
 		if (elseStatement != null)
-			elseStatement.print();
+			elseStatement.print(tabStop);
 	}
 }
