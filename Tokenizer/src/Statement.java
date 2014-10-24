@@ -38,7 +38,7 @@ public class Statement implements Production {
 	}
 
 	public void execute() {
-
+		body.execute();
 	}
 
 	public void print(int tabStop) {

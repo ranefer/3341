@@ -1,16 +1,11 @@
 import java.util.Hashtable;
 
-public class Id implements Production {
+public class Id implements NumericProduction{
 
 	String name;
 	
-	private static Hashtable<String, Set<Integer, Boolean, Boolean>> variables = new Hashtable<String, Set<Integer, Boolean, Boolean>>();
+	private static Hashtable<String, VariableInfo<Integer, Boolean, Boolean>> variables = new Hashtable<String, VariableInfo<Integer, Boolean, Boolean>>();
 	
-	boolean isDeclared = false;
-	
-	public Id() {
-	}
-
 	public static boolean isId(int token) {
 		return token == 32;
 	}
@@ -20,28 +15,27 @@ public class Id implements Production {
 
 		String key = tokens.getSymbol();
 		name = key;
-		Set value = new Set(0,isDeclared,false);
+		VariableInfo value = new VariableInfo(0,true,false);
 
 		variables.put(key, value);
 		tokens.skip();
-	}
-
-	public void execute() {
-		System.out.println(name + " =  " + variables.get(name).first);
 	}
 
 	public void print(int tabStop) {
 		System.out.print(name);
 	}
 	
-	public int getValue() {
-		return variables.get(name).first;
-	}
 	public void setValue(int value) {
-		variables.get(name).first = value;
+		variables.get(name).isInit = true;
+		variables.get(name).value = value;
 	}
 	
 	public static boolean isDeclared(String name){
 		return variables.containsKey(name);
+	}
+
+	@Override
+	public int value() {
+		return variables.get(name).value;
 	}
 }

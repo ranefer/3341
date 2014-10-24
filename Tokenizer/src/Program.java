@@ -4,7 +4,7 @@ public class Program implements Production {
 			"if", "then", "else", "while", "loop", "read", "write" };
 
 	Production declarationSequence;
-	Production statementSequence;
+	StatementSequence statementSequence;
 
 	public Program() {
 		declarationSequence = new DeclarationSequence();
@@ -37,7 +37,7 @@ public class Program implements Production {
 	}
 
 	public void execute() {
-
+		statementSequence.execute();
 	}
 
 	public void print(int tabStop) {
@@ -46,6 +46,7 @@ public class Program implements Production {
 		System.out.println("begin");
 		statementSequence.print(tabStop);
 		End.print(0);
+		System.out.println();
 	}
 
 }

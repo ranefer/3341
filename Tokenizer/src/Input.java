@@ -1,6 +1,6 @@
 public class Input implements Production {
 
-	Production id;
+	Id id;
 
 	public Input() {
 		id = new Id();
@@ -21,7 +21,8 @@ public class Input implements Production {
 	}
 
 	public void execute() {
-
+		//TODO : READ IN VALUE FROM FILE
+		id.setValue(-1);
 	}
 
 	public void print(int tabStop) {

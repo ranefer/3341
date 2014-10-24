@@ -50,5 +50,7 @@ public class CoreIntrepreter {
 		tokens.reset();
 		p.parse(tokens);
 		p.print(0);
+		
+		p.execute();
 	}
 }

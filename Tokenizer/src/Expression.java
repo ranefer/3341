@@ -1,8 +1,8 @@
-public class Expression implements Production {
+public class Expression implements NumericProduction {
 
-	Production factor;
+	Factor factor;
 	String symbol;
-	Production expression;
+	Expression expression;
 
 	public Expression() {
 		factor = new Factor();
@@ -19,20 +19,26 @@ public class Expression implements Production {
 		factor.parse(tokens);
 
 		if (tokens.hasCurrent() && tokens.getToken() == 22) {
-                expression = new Expression();
+            expression = new Expression();
 			symbol = "+";
 			tokens.skip();
 			expression.parse(tokens);
 		} else if (tokens.hasCurrent() && tokens.getToken() == 23) {
-                expression = new Expression();
+            expression = new Expression();
 			symbol = "-";
 			tokens.skip();
 			expression.parse(tokens);
 		}
 	}
 
-	public void execute() {
-
+	public int value() {
+		int result = factor.value();
+		if(symbol == "+") {
+			result += expression.value();
+		}else if(symbol == "-"){
+			result -= expression.value();
+		}
+		return result;
 	}
 
 	public void print(int tabStop) {

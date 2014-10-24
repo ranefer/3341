@@ -1,6 +1,6 @@
 public class Loop implements Production {
 
-	Production condition;
+	Condition condition;
 	Production statement;
 
 	public Loop() {
@@ -29,7 +29,9 @@ public class Loop implements Production {
 	}
 
 	public void execute() {
-
+		while(condition.evaluate()) {
+			statement.execute();
+		}
 	}
 
 	public void print(int tabStop) {

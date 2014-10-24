@@ -1,6 +1,6 @@
 public class If implements Production {
 
-	Production condition;
+	Condition condition;
 	Production ifStatement;
 	Production elseStatement;
 
@@ -43,7 +43,10 @@ public class If implements Production {
 	}
 
 	public void execute() {
-
+		if(condition.evaluate())
+			ifStatement.execute();
+		else if (elseStatement != null)
+			elseStatement.execute();
 	}
 
 	public void print(int tabStop) {

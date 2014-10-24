@@ -1,6 +1,6 @@
 public class Declarations implements Production {
 
-	Production idList;
+	IdList idList;
 
 	String symbol;
 
@@ -22,10 +22,6 @@ public class Declarations implements Production {
 		SemiColon.parse(tokens);
 	}
 
-	public void execute() {
-
-	}
-
 	public void print(int tabStop) {
 
             Tab.print(tabStop);
@@ -34,5 +30,10 @@ public class Declarations implements Production {
             
             Tab.print(tabStop);
 			SemiColon.print();
+	}
+
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
 	}
 }

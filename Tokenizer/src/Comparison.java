@@ -1,6 +1,6 @@
-public class Comparison implements Production {
-	Production op1;
-	Production op2;
+public class Comparison implements BooleanProduction {
+	NumericProduction op1;
+	NumericProduction op2;
 
 	String compareOperator;
 
@@ -69,7 +69,33 @@ public class Comparison implements Production {
 		symbols.skip();
 	}
 
-	public void execute() {
+	public boolean evaluate() {
+		NumericProduction np1 = (NumericProduction) op1;
+		NumericProduction np2 = (NumericProduction) op2;
+
+		boolean result = false;
+		switch (compareOperator) {
+		case "!=":
+			result =np1.value()!=np2.value();
+			break;
+		case "==":
+			result =np1.value()==np2.value();
+			break;
+		case "<":
+			result =np1.value()<np2.value();
+			break;
+		case ">":
+			result =np1.value()>np2.value();
+			break;
+		case "<=":
+			result =np1.value()<=np2.value();
+			break;
+		case ">=":
+			result =np1.value()>=np2.value();
+			break;
+
+		}
+			return result;
 	}
 
 	public void print(int tabStop) {

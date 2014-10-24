@@ -1,7 +1,7 @@
 public class Assign implements Production {
 
-	Production id;
-	Production expr;
+	Id id;
+	Expression expr;
 
 	public Assign() {
 		id = new Id();
@@ -26,7 +26,7 @@ public class Assign implements Production {
 	}
 
 	public void execute() {
-
+		id.setValue(expr.value());
 	}
 
 	public void print(int tabStop) {

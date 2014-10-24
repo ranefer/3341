@@ -1,6 +1,6 @@
 public class Output implements Production {
 
-	Production id;
+	Id id;
 
 	public Output() {
 		id = new Id();
@@ -20,7 +20,7 @@ public class Output implements Production {
 	}
 
 	public void execute() {
-		id.execute();
+		System.out.println(id.name + ":  " + id.value());
 	}
 
 	public void print(int tabStop) {
@@ -28,5 +28,4 @@ public class Output implements Production {
 		id.print(tabStop);
 		SemiColon.print();
 	}
-
 }

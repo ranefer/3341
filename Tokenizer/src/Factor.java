@@ -1,7 +1,7 @@
-public class Factor implements Production {
+public class Factor implements NumericProduction {
 
-	Production op;
-	Production factor;
+	Op op;
+	Factor factor;
 
 	public Factor() {
 		op = new Op();
@@ -22,8 +22,9 @@ public class Factor implements Production {
 		}
 	}
 
-	public void execute() {
-
+	public int value() {
+		int result = op.value();
+		return result;
 	}
 
 	public void print(int tabStop) {

@@ -1,4 +1,4 @@
-public class IntegerValue implements Production {
+public class IntegerValue implements NumericProduction {
 	
 	String value;
 	
@@ -14,7 +14,8 @@ public class IntegerValue implements Production {
 	}
 
 	@Override
-	public void execute() {
+	public int value() {
+		return Integer.valueOf(value);
 	}
 
 	@Override

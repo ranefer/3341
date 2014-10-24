@@ -1,5 +1,5 @@
-public class Op implements Production {
-	Production body;
+public class Op implements NumericProduction{
+	NumericProduction body;
 	boolean hasParen;
 
 	public Op() {
@@ -35,7 +35,9 @@ public class Op implements Production {
 			Reporter.Assert(false, "Op");
 	}
 
-	public void execute() {
+	public int value() {
+		int result = body.value(); ;
+		return result;
 	}
 
 	public void print(int tabStop) {

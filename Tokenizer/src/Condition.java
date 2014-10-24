@@ -1,7 +1,7 @@
-public class Condition implements Production {
+public class Condition implements BooleanProduction {
 
-	Production p;
-	Production p2;
+	Comparison p;
+	Comparison p2;
 
 	char[] extraSymbols;
 
@@ -68,8 +68,15 @@ public class Condition implements Production {
 		tokens.skip();
 	}
 
-	public void execute() {
-
+	public boolean evaluate() {
+        boolean result = p.evaluate();
+        if (extraSymbols[0]== '!')
+        	return !p.evaluate();
+		else if(extraSymbols[0] == '[' && extraSymbols[1] == '&')
+			return p.evaluate() && p2.evaluate();
+		else if(extraSymbols[0] == '[' && extraSymbols[1] == '|')
+			return p.evaluate() || p2.evaluate();
+        return result;
 	}
 
 	public void print(int tabStop) {
