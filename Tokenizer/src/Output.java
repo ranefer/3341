@@ -20,7 +20,12 @@ public class Output implements Production {
 	}
 
 	public void execute() {
-		System.out.println(id.name + ":  " + id.value());
+		int length = id.getLongestIdentifierLength();
+		Tab.print(length - id.name.length());
+		if(id.isInitialized())
+           System.out.println(id.name + "=  " + id.value());
+		else 
+           System.out.println(id.name + "=  -1");
 	}
 
 	public void print(int tabStop) {
@@ -28,4 +33,5 @@ public class Output implements Production {
 		id.print(tabStop);
 		SemiColon.print();
 	}
+	
 }

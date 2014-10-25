@@ -18,7 +18,7 @@ public class Tokens {
 		try {
 			result = tokenizer.get(symbols.getSymbol());
 		} catch (Exception e) {
-			System.out.println("Error");
+			System.out.println("Error: " + symbols.getSymbol() + " is not valid");
 			System.exit(10);
 		}
 		return result;

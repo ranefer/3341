@@ -52,7 +52,7 @@ public class If implements Production {
 	public void print(int tabStop) {
 		System.out.print("if ");
 		condition.print(tabStop);
-		System.out.println();
+		System.out.println(" then");
 
 		ifStatement.print(tabStop + Tab.space);
 		if (elseStatement != null) { 

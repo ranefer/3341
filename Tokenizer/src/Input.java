@@ -21,8 +21,8 @@ public class Input implements Production {
 	}
 
 	public void execute() {
-		//TODO : READ IN VALUE FROM FILE
-		id.setValue(-1);
+		int value = Integer.valueOf(Data.next());
+		id.setValue(value);
 	}
 
 	public void print(int tabStop) {
