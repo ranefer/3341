@@ -10,22 +10,22 @@ public class Output implements Production {
 		return token == 11;
 	}
 
-	public void parse(Tokens symbols) {
-		Reporter.Assert(symbols.hasCurrent() && isOutput(symbols.getToken()),
+	public void parse(Tokens tokens) {
+		Reporter.Assert(tokens.hasCurrent() && isOutput(tokens.getToken()),
 				"Output");
-		symbols.skip();
+		tokens.skip();
 
-		id.parse(symbols);
-		SemiColon.parse(symbols);
+		Reporter.Assert(Id.isDeclared(tokens.getSymbol()), "declared id");
+		id.parse(tokens);
+		SemiColon.parse(tokens);
 	}
 
 	public void execute() {
 		int length = id.getLongestIdentifierLength();
 		Tab.print(length - id.name.length());
-		if(id.isInitialized())
-           System.out.println(id.name + "=  " + id.value());
-		else 
-           System.out.println(id.name + "=  -1");
+		Reporter.Assert(id.isInitialized(), "initialized id");
+
+		System.out.println(id.name + "=  " + id.value());
 	}
 
 	public void print(int tabStop) {
@@ -33,5 +33,5 @@ public class Output implements Production {
 		id.print(tabStop);
 		SemiColon.print();
 	}
-	
+
 }

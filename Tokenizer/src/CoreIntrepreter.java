@@ -9,12 +9,12 @@ public class CoreIntrepreter {
 
 		String[] source = null;
 		String[] data = null;
-		if (args.length == 0) {	
-			args= getArgs();
+		if (args.length == 0) {
+			args = getArgs();
 			source = read(args[0]);
 		} else {
 			source = read(args[0]);
-			
+
 			try {
 				Data.setData(new Scanner(new FileReader(args[1])));
 			} catch (FileNotFoundException e) {
@@ -22,7 +22,7 @@ public class CoreIntrepreter {
 				e.printStackTrace();
 			}
 		}
-		
+
 		ArrayList<String> ARGS = new ArrayList<String>();
 		String temp = "";
 		for (int i = 0; i < source.length; i++) {
@@ -46,7 +46,7 @@ public class CoreIntrepreter {
 			String[] temp1 = source[i].split("[\\s]+");
 			for (int j = 0; j < temp1.length; j++) {
 				if (!temp1[j].equals("")) {
-				ARGS.add(temp1[j]);
+					ARGS.add(temp1[j]);
 				}
 			}
 		}
@@ -60,37 +60,40 @@ public class CoreIntrepreter {
 		 */
 		tokens.reset();
 		p.parse(tokens);
+
 		p.print(0);
-		
+		System.out.println();
 		p.execute();
 	}
+
 	public static String[] getArgs() {
 		ArrayList<String> redirectedArgs = new ArrayList<String>();
 		Scanner scanner = new Scanner(System.in);
-	
-			while (scanner.hasNext())
-				redirectedArgs.add(scanner.next());
+
+		while (scanner.hasNext())
+			redirectedArgs.add(scanner.next());
 
 		String[] result = new String[redirectedArgs.size()];
-			for (int i = 0; i < result.length; i++) {
-				result[i] = redirectedArgs.get(i);
-			}
-			return result;
-	
+		for (int i = 0; i < result.length; i++) {
+			result[i] = redirectedArgs.get(i);
+		}
+		return result;
+
 	}
+
 	public static String[] read(String file) {
 		String[] result = null;
 		ArrayList<String> temp = new ArrayList<String>();
 		try {
-			Scanner	scanner = new Scanner(new FileReader(file));
-            while (scanner.hasNext())
-            temp.add(scanner.next());
-            scanner.close();
+			Scanner scanner = new Scanner(new FileReader(file));
+			while (scanner.hasNext())
+				temp.add(scanner.next());
+			scanner.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	finally {
-			
+		} finally {
+
 		}
 		result = new String[temp.size()];
 		for (int i = 0; i < temp.size(); i++) {
