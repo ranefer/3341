@@ -1,13 +1,12 @@
 public class Condition implements BooleanProduction {
 
-	Comparison p;
-	Comparison p2;
+	BooleanProduction p;
+	BooleanProduction p2;
 
 	char[] extraSymbols;
 
 	public Condition() {
 		extraSymbols = new char[3];
-		p = new Comparison();
 	}
 
 	public static boolean isCondition(int token) {
@@ -25,15 +24,18 @@ public class Condition implements BooleanProduction {
 		int alternative = tokens.getToken();
 
 		if (Comparison.isComparison(alternative)) {
+            p = new Comparison();
 			p.parse(tokens);
 		} else if (alternative == 15) {
 			parseExclamationPoint(tokens);
+			p = new Condition();
 			p.parse(tokens);
 		} else if (alternative == 16) {
 			parseOpenBracket(tokens);
+			p = new Condition();
+			p2 = new Condition();
 			p.parse(tokens);
 			parseTokens(tokens);
-			p2 = new Comparison();
 			p2.parse(tokens);
 			parseClosedBracket(tokens);
 		}

@@ -16,7 +16,8 @@ public class Factor implements NumericProduction {
 				"Factor");
 		op.parse(tokens);
 
-		if (tokens.hasCurrent() && tokens.equals("*")) {
+		if (tokens.hasCurrent() && tokens.getToken() == 24) {
+			tokens.skip();
 			factor = new Factor();
 			factor.parse(tokens);
 		}
@@ -29,7 +30,9 @@ public class Factor implements NumericProduction {
 
 	public void print(int tabStop) {
 		op.print(tabStop);
-		if (factor != null)
+		if (factor != null) {
+			System.out.print(" * ");
 			factor.print(tabStop);
+		}
 	}
 }

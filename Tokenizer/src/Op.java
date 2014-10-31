@@ -28,9 +28,12 @@ public class Op implements NumericProduction{
 			body = new Id();
 			body.parse(tokens);
 		} else if (alternative == 20) { // (
+			hasParen  = true;
+			tokens.skip();
 			body = new Expression();
 			body.parse(tokens);
 			Reporter.Assert(tokens.getToken() == 21, ")"); // )
+			tokens.skip();
 		} else
 			Reporter.Assert(false, "Op");
 	}
