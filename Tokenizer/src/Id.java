@@ -1,12 +1,11 @@
 import java.util.Hashtable;
-import java.util.Set;
 
-public class Id implements NumericProduction{
+public class Id implements NumericProduction {
 
 	String name;
-	
+
 	private static Hashtable<String, VariableInfo<Integer, Boolean, Boolean>> variables = new Hashtable<String, VariableInfo<Integer, Boolean, Boolean>>();
-	
+
 	public static boolean isId(int token) {
 		return token == 32;
 	}
@@ -16,7 +15,7 @@ public class Id implements NumericProduction{
 
 		String key = tokens.getSymbol();
 		name = key;
-		VariableInfo value = new VariableInfo(0,true,false);
+		VariableInfo value = new VariableInfo(0, true, false);
 
 		variables.put(key, value);
 		tokens.skip();
@@ -25,29 +24,30 @@ public class Id implements NumericProduction{
 	public void print(int tabStop) {
 		System.out.print(name);
 	}
-	
+
 	public void setValue(int value) {
 		variables.get(name).isInit = true;
 		variables.get(name).value = value;
 	}
-	
-	public static boolean isDeclared(String name){
+
+	public static boolean isDeclared(String name) {
 		return variables.containsKey(name);
 	}
-	
+
 	public boolean isInitialized() {
-		return variables.get(name).isInit;
+		boolean result = variables.contains(name) && variables.get(name).isInit;
+		return result;
 	}
 
 	@Override
 	public int value() {
 		return variables.get(name).value;
 	}
-	
+
 	public static int getLongestIdentifierLength() {
 		String t;
 		int max = -1;
-		for(String s : variables.keySet()) {
+		for (String s : variables.keySet()) {
 			max = s.length() > max ? s.length() : max;
 		}
 		return max;

@@ -10,14 +10,14 @@ public class Input implements Production {
 		return token == 10;
 	}
 
-	public void parse(Tokens symbols) {
-		Reporter.Assert(symbols.hasCurrent() && isInput(symbols.getToken()),
+	public void parse(Tokens tokens) {
+		Reporter.Assert(tokens.hasCurrent() && isInput(tokens.getToken()),
 				"read");
-		symbols.skip();
+		tokens.skip();
 
-		id.parse(symbols);
+		id.parse(tokens);
 
-		SemiColon.parse(symbols);
+		SemiColon.parse(tokens);
 	}
 
 	public void execute() {
@@ -29,8 +29,6 @@ public class Input implements Production {
 		Tab.print(tabStop);
 		System.out.print("read ");
 		id.print(tabStop);
-
-		Tab.print(tabStop);
 		SemiColon.print();
 	}
 

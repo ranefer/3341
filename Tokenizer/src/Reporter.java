@@ -8,13 +8,19 @@ public class Reporter {
 		System.out.println();
 		System.out.print("Expected '" + symbol + "'");
 		if (symbols != null && symbols.hasCurrent())
-			System.out.print(" but was " + symbols.getSymbol());
+			System.out.print(" but was '" + symbols.getSourceSymbol() + "'");
 		System.out.println();
 
 		System.exit(10);
 	}
 
 	public static void Report() {
+	}
+
+	public static void Exit(String errorMessage) {
+		System.out.println();
+		System.out.println(errorMessage);
+		System.exit(10);
 	}
 
 	public static void setSymbols(Symbol symbols) {

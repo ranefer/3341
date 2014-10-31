@@ -8,7 +8,6 @@ public class CoreIntrepreter {
 	public static void main(String... args) {
 
 		String[] source = null;
-		String[] data = null;
 		if (args.length == 0) {
 			args = getArgs();
 			source = read(args[0]);

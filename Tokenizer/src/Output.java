@@ -16,6 +16,7 @@ public class Output implements Production {
 		tokens.skip();
 
 		Reporter.Assert(Id.isDeclared(tokens.getSymbol()), "declared id");
+
 		id.parse(tokens);
 		SemiColon.parse(tokens);
 	}
@@ -25,7 +26,7 @@ public class Output implements Production {
 		Tab.print(length - id.name.length());
 		Reporter.Assert(id.isInitialized(), "initialized id");
 
-		System.out.println(id.name + "=  " + id.value());
+		System.out.println(id.name + " =  " + id.value());
 	}
 
 	public void print(int tabStop) {
