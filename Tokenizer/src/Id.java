@@ -15,7 +15,7 @@ public class Id implements NumericProduction {
 
 		String key = tokens.getSymbol();
 		name = key;
-		VariableInfo value = new VariableInfo(0, true, false);
+		VariableInfo<Integer, Boolean, Boolean> value = new VariableInfo<Integer, Boolean, Boolean>(0, true, false);
 
 		variables.put(key, value);
 		tokens.skip();
