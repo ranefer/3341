@@ -34,8 +34,14 @@ public class Id implements NumericProduction {
 		return variables.containsKey(name);
 	}
 
-	public boolean isInitialized() {
+	public static boolean isInitialized(String name) {
 		boolean result = variables.contains(name) && variables.get(name).isInit;
+		return result;
+	}
+
+	public boolean isInitialized() {
+		boolean result = variables.containsKey(name)
+				&& variables.get(name).isInit;
 		return result;
 	}
 

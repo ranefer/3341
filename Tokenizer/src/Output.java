@@ -22,10 +22,9 @@ public class Output implements Production {
 	}
 
 	public void execute() {
+		Reporter.Assert(id.isInitialized(), "initialized id");
 		int length = id.getLongestIdentifierLength();
 		Tab.print(length - id.name.length());
-		Reporter.Assert(id.isInitialized(), "initialized id");
-
 		System.out.println(id.name + " =  " + id.value());
 	}
 

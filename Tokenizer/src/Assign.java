@@ -15,7 +15,8 @@ public class Assign implements Production {
 	public void parse(Tokens tokens) {
 		Reporter.Assert(tokens.hasCurrent() && isAssign(tokens.getToken()),
 				"Id");
-		Reporter.Assert(Id.isDeclared(tokens.getSymbol()), "declared identifier");
+		Reporter.Assert(Id.isDeclared(tokens.getSymbol()),
+				"declared identifier");
 		id.parse(tokens);
 
 		parseEqualSign(tokens);
