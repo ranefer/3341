@@ -1,6 +1,6 @@
 # 3341
 
-Tokenizer for 3341: Principles of Programming Languages (2014)
+Archive of Tokenizer for 3341: Principles of Programming Languages (2014)
 
 Main:
   CoreInterpreter
